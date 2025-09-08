@@ -34,20 +34,8 @@
     block-size: clamp(1.875rem, 0.625rem + 5.3571vw, 5rem);
   }
 
-  .main-light-black-theme-img {
-    transform: rotateY(180deg);
-    position: absolute;
-    top: -10px;
-    left: -10px;
-    width: 50px;
-    opacity: 50%;
-    animation: pulse 7s ease-in-out infinite;
-  }
 }
 
-.background-image-light {
-  display: none;
-}
 
 
 @media (min-width: 1025px) and (orientation: portrait) {
@@ -80,9 +68,6 @@
   }
 }
 
-.background-image-light {
-  display: none;
-}
 /*
 @media (prefers-color-scheme: light) {
   :root {
