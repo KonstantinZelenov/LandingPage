@@ -1,0 +1,25 @@
+@font-face {
+    font-family: 'Kaushan';
+    src: url('../fonts/KaushanScript-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Kaushan_bold';
+    src: url('../fonts/KaushanScript-Regular.ttf') format('truetype');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'Witcher';
+    src: url('../fonts/Thewitcher-jnOj.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Witcher_bold';
+    src: url('../fonts/Thewitcher-jnOj.ttf') format('truetype');
+    font-weight: bold;
+}

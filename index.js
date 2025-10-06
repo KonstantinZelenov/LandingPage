@@ -1,41 +1,91 @@
-import { openPopup, closePopup, setupCloseButton } from './blocks/scripts/modal.js';
-import { POPUPS_CONFIG } from './blocks/scripts/popup_config.js'
+import { openPopup, setupCloseButton } from './scripts/modal.js';
 
-function createPopup(name, config) {
-  const template = document.getElementById('popup-template');
-  const popup = template.content.cloneNode(true).querySelector('.popup');
-  popup.classList.add(`popup_${name}`);
+const humburgerButton = document.querySelector('.main-title__hamburger-menu-icon');
+const contactsButton = document.querySelector('[data-popup="contacts"]');
+const aboutMeButton = document.querySelector('[data-popup="about-me"]');
+const aboutProjectsButton = document.querySelector('[data-popup="about-projects"]');
+const aboutSchoolButton = document.querySelector('[data-popup="about-school"]');
+const priceButton = document.querySelector('[data-popup="price"]');
 
-  const body = popup.querySelector('.popup__body');
-  
-  body.insertAdjacentHTML('beforeend', config.content);
-
-  document.body.appendChild(popup);
-  popup.addEventListener('click', (e) => closePopup(e, popup));
-  setupCloseButton(popup);
-
-  return popup;
-}
-
-// Инициализация
-function initAllPopups() {
-  const popups = {};
-  
-  Object.entries(POPUPS_CONFIG).forEach(([name, config]) => {
-    popups[name] = createPopup(name, config);
-    
-    config.triggers?.forEach(trigger => {
-      document.querySelectorAll(trigger.selector).forEach(el => {
-        el.addEventListener('click', () => {
-          if (trigger.parentPopup) {
-            closePopup({ target: popups[trigger.parentPopup] }, popups[trigger.parentPopup]);
-          }
-          openPopup(popups[name]);
-        });
-      });
+function openMainMenu() {
+  if (humburgerButton) {
+    humburgerButton.addEventListener('click', () => {
+      const popup = document.querySelector('.popup_main-menu');
+      openPopup(popup);
+      setupCloseButton(popup);
     });
-  });
+  }
 }
+
+openMainMenu();
+
+function openContactsPopup() {
+  if (contactsButton) {
+    contactsButton.addEventListener('click', () => {
+      const popup = document.querySelector('.popup__navbar');
+      openPopup(popup);
+      setupCloseButton(popup);
+    });
+  }
+}
+
+openContactsPopup();
+
+function openAboutMePopup() {
+  if (aboutMeButton) {
+    aboutMeButton.addEventListener('click', () => {
+      const popup = document.querySelector('.popup_about-me');
+      openPopup(popup);
+      setupCloseButton(popup);
+    });
+  }
+}
+
+openAboutMePopup();
+
+function openAboutProjectsPopup() {
+  if (aboutProjectsButton) {
+    aboutProjectsButton.addEventListener('click', () => {
+      const popup = document.querySelector('.popup_projects');
+      openPopup(popup);
+      setupCloseButton(popup);
+    });
+  }
+}
+
+openAboutProjectsPopup()
+
+
+function openAboutSchoolPopup() {
+  if (aboutSchoolButton) {
+    aboutSchoolButton.addEventListener('click', () => {
+      const popup = document.querySelector('.popup_about-school');
+      openPopup(popup);
+      setupCloseButton(popup);
+    });
+  }
+}
+
+openAboutSchoolPopup()
+
+
+function openPricesPopup() {
+  if (priceButton) {
+    priceButton.addEventListener('click', () => {
+      const popup = document.querySelector('.popup_prices');
+      openPopup(popup);
+      setupCloseButton(popup);
+    });
+  }
+}
+
+openPricesPopup()
+
+
+
+
+
+
 
 function setupIconAnimation(containerSelector, iconSelector, interval = 7000) {
   const container = document.querySelector(containerSelector);
@@ -105,6 +155,44 @@ window.addEventListener('load', setViewportHeight);
 // Запуск инициализации
 document.addEventListener('DOMContentLoaded', () => {
   setViewportHeight();
-  initAllPopups();
   initAnimation();
 });
+
+
+// Создаю модальное окно 
+/*
+function createPopup(name, config) {
+  const template = document.getElementById('popup-template');
+  const popup = template.content.cloneNode(true).querySelector('.popup');
+  popup.classList.add(`popup_${name}`);
+
+  const body = popup.querySelector('.popup__body');
+  
+  body.insertAdjacentHTML('beforeend', config.content);
+
+  document.body.appendChild(popup);
+  popup.addEventListener('click', (e) => closePopup(e, popup));
+  setupCloseButton(popup);
+
+  return popup;
+}
+
+function initAllPopups() {
+  const popups = {};
+  
+  Object.entries(POPUPS_CONFIG).forEach(([name, config]) => {
+    popups[name] = createPopup(name, config);
+    
+    config.triggers?.forEach(trigger => {
+      document.querySelectorAll(trigger.selector).forEach(el => {
+        el.addEventListener('click', () => {
+          if (trigger.parentPopup) {
+            closePopup({ target: popups[trigger.parentPopup] }, popups[trigger.parentPopup]);
+          }
+          openPopup(popups[name]);
+        });
+      });
+    });
+  });
+}
+*/

@@ -1,0 +1,32 @@
+@import url('./styles/globals.css');
+@import url('./styles/keyframes.css');
+@import url('./styles/variables.css');
+@import url('./styles/body.css');
+@import url('./styles/main-title.css');
+@import url('./styles/landscape.css');
+@import url('./styles/portrait.css');
+@import url('./styles/fonts.css');
+@import url('./styles/navbar.css');
+@import url('./styles/popup.css');
+@import url('./styles/about-me.css');
+@import url('./styles/about-school.css');
+@import url('./styles/prices.css');
+
+h2,
+h3,
+h4,
+h5 {
+  font-weight: var(--big-font-weight);
+  font-style: normal;
+  text-transform: uppercase;
+}
+
+/*РАБОТА С ЧЕКБОКСАМИ*/
+
+
+
+
+
+
+
+

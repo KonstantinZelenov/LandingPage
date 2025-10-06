@@ -8,11 +8,12 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="theme-color" content="#000000">
-  <meta name="keywords" content="Фехтование, кино, спорт, бой, каскадёр, хореография, фехтовальное искусство, театр, театральное искусство,артистическое Фехтование, сценическое Фехтование" />
+  <meta name="keywords"
+    content="Фехтование, кино, спорт, бой, каскадёр, хореография, фехтовальное искусство, театр, театральное искусство,артистическое Фехтование, сценическое Фехтование" />
   <meta name="description"
     content="Fencing training on various types of weapons. Staging duels for theater and cinema. Shooting short films and staging theater performances with fights">
-  <link rel="stylesheet" href="./styles/index.css" />
-  <link rel="icon" href="./images/cross-swords.ico" sizes="any"/>
+  <link rel="stylesheet" href="./index.css" />
+  <link rel="icon" href="./images/cross-swords.ico" sizes="any" />
   <link rel="icon" href="./images/cross-swords.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="./images/cross-swords.png" />
 </head>
@@ -23,123 +24,228 @@
       <section class="main-title" id="main-title">
         <picture class="main-title__picture">
           <!-- Источники для портретной ориентации -->
-          <source 
-            media="(orientation: portrait) and (max-width: 1024px)" 
-            srcset="
+          <source media="(orientation: portrait) and (max-width: 1024px)" srcset="
               ./images/background-images/about-me-black-portrait-720-1280.webp 1x,
               ./images/background-images/about-me-black-portrait-1080-1920.webp 2x,
               ./images/background-images/about-me-black-portrait-1440-2560.webp 3x
-            "
-            type="image/webp"
-          >
-          <source 
-            media="(orientation: portrait) and (max-width: 1024px)" 
-            srcset="
+            " type="image/webp">
+          <source media="(orientation: portrait) and (max-width: 1024px)" srcset="
               ./images/background-images/about-me-black-portrait-720-1280.jpg 1x,
               ./images/background-images/about-me-black-portrait-1080-1920.jpg 2x,
               ./images/background-images/about-me-black-portrait-1440-2560.jpg 3x
-            "
-            type="image/jpeg"
-          >
-          
-          <source 
-            media="(orientation: portrait) and (min-width: 1025px)" 
-            srcset="
+            " type="image/jpeg">
+
+          <source media="(orientation: portrait) and (min-width: 1025px)" srcset="
               ./images/background-images/about-me-black-portrait-1080-1920.webp 1x,
               ./images/background-images/about-me-black-portrait-1440-2560.webp 2x
-            "
-            type="image/webp"
-          >
-          <source 
-            media="(orientation: portrait) and (min-width: 1025px)" 
-            srcset="
+            " type="image/webp">
+          <source media="(orientation: portrait) and (min-width: 1025px)" srcset="
               ./images/background-images/about-me-black-portrait-1080-1920.jpg 1x,
               ./images/background-images/about-me-black-portrait-1440-2560.jpg 2x
-            "
-            type="image/jpeg"
-          >
-          
+            " type="image/jpeg">
+
           <!-- Источники для альбомной ориентации -->
-          <source 
-            media="(orientation: landscape) and (max-width: 1024px)" 
-            srcset="
+          <source media="(orientation: landscape) and (max-width: 1024px)" srcset="
               ./images/background-images/about-me-black-landscape-800-450.webp 1x,
               ./images/background-images/about-me-black-landscape-1280-720.webp 2x,
               ./images/background-images/about-me-black-landscape-1920-1080.webp 3x
-            "
-            type="image/webp"
-          >
-          <source 
-            media="(orientation: landscape) and (max-width: 1024px)" 
-            srcset="
+            " type="image/webp">
+          <source media="(orientation: landscape) and (max-width: 1024px)" srcset="
               ./images/background-images/about-me-black-landscape-800-450.jpg 1x,
               ./images/background-images/about-me-black-landscape-1280-720.jpg 2x,
               ./images/background-images/about-me-black-landscape-1920-1080.jpg 3x
-            "
-            type="image/jpeg"
-          >
-          
-          <source 
-            media="(orientation: landscape) and (min-width: 1025px)" 
-            srcset="
+            " type="image/jpeg">
+
+          <source media="(orientation: landscape) and (min-width: 1025px)" srcset="
               ./images/background-images/about-me-black-landscape-1920-1080.webp 1x,
               ./images/background-images/about-me-black-landscape-2560-1440.webp 2x
-            "
-            type="image/webp"
-          >
-          <source 
-            media="(orientation: landscape) and (min-width: 1025px)" 
-            srcset="
+            " type="image/webp">
+          <source media="(orientation: landscape) and (min-width: 1025px)" srcset="
               ./images/background-images/about-me-black-landscape-1920-1080.jpg 1x,
               ./images/background-images/about-me-black-landscape-2560-1440.jpg 2x
-            "
-            type="image/jpeg"
-          >
-          
+            " type="image/jpeg">
+
           <!-- Фолбэк для браузеров, не поддерживающих picture -->
-          <img 
-            class="main-title__image" 
-            src="./images/background-images/about-me-black-landscape-1920-1080.jpg" 
+          <img class="main-title__image" src="./images/background-images/about-me-black-landscape-1920-1080.jpg"
             alt="A man with a staff in a shaman costume stands in the dark and stretches his hand towards a beam of light."
-            loading="eager"
-            decoding="async"
-          >
+            loading="eager" decoding="async">
         </picture>
-        
+
         <h1 class="main-title__header">Konstantin Zelenov</h1>
         <p class="main-title__text">Fencing coach, stuntman, athlete</p>
-      
+        <ul class="main-title__image-list">
+          <li class="main-title__image-list-item">
+            <img class="main-title__icons main-title__hamburger-menu-icon" src="./images/icon-hamburger-menu.png"
+              alt="Hamburger-menu-icon"></img>
+          </li>
+          <li class="main-title__image-list-item main-title__image-list-item_translate">
+            <img class="main-title__icons main-title__translate-menu-icon active" src="./images/rf-flag.svg"
+              alt="Russian Federation flag translate icon"></img>
+            <img class="main-title__icons main-title__translate-menu-icon" src="./images/gb-flag.svg"
+              alt="Great Britain flag translate icon"></img>
+          </li>
+        </ul>
       </section>
     </main>
   </div>
+
+
+
+  <div class="popup popup_main-menu">
+    <div class="popup__content">
+      <button class="popup__close-button" aria-label="Close modal"></button>
+      <ul class="popup__links">
+        <li class="popup__links-li" data-popup="about-me">About me</li>
+        <li class="popup__links-li" data-popup="about-projects">Projects</li>
+        <li class="popup__links-li" data-popup="about-school">School</li>
+        <li class="popup__links-li" data-popup="price">Prices</li>
+        <li class="popup__links-li popup__image-list-item popup__image-list-item_contacts" data-popup="contacts">
+          <img class="popup__icons popup__contacts-menu-icon active" src="./images/contacts-mail.png">
+          <img class="popup__icons popup__contacts-menu-icon" src="./images/contacts-phone.png">
+          <img class="popup__icons popup__contacts-menu-icon" src="./images/contacts-location.png">
+        </li>
+      </ul>
+    </div>
+  </div>
+
+
+  <div class="popup popup_about-me">
+    <div class="popup__content">
+      <button class="popup__close-button" aria-label="Close modal"></button>
+      <div class="popup_about-me__text">
+        <h3>About me</h3>
+        <p>Hello, my name is Konstantin Zelenov and I am happy to share my story with you. I devoted the last 20 years of my life to fencing, honing my skills as an athlete, stuntman, theater and film actor.</p>
+        <p>I have twice become world champion in artistic fencing. Several times I was the champion of Russia and a multiple winner of competitions in artistic fencing.</p>
+        <p>Whether you dream of climbing the championship podium or just want to experience the thrill of this ancient art form. I am here to help you every step of the way. Contact me today to start an exciting adventure in the world of swordsmanship. Lets create something extraordinary together!</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="popup popup_projects">
+    <div class="popup__content">
+      <button class="popup__close-button" aria-label="Close modal"></button>
+      <h2>My Projects</h2>
+        <ul class="projects-list">
+          <li class="project-item">
+            <h3>Artistic Fencing Performances</h3>
+            <p>Choreographed fight scenes for theater and film productions</p>
+          </li>
+          <li class="project-item">
+            <h3>Stunt Coordination</h3>
+            <p>Safety-focused fight scene direction for action movies</p>
+          </li>
+          <li class="project-item">
+            <h3>Historical Martial Arts</h3>
+            <p>Reconstruction of medieval and renaissance combat techniques</p>
+          </li>
+        </ul>
+    </div>
+  </div>
+
+
+  <div class="popup popup_about-school">
+    <div class="popup__content">
+      <button class="popup__close-button" aria-label="Close modal"></button>
+      <div class="video-content__description">
+          <h2>About School</h2>
+          <p class="video-content__description-text">Welcome to our fencing school. Our fencing lessons will not only teach you the basics of technique such as attack, defense and movement, but will also help you develop flexibility, coordination and strength. Each student will receive attention and support in order to achieve maximum results in their development as a swordsman.</p>
+        </div>
+    </div>
+  </div>
+
+
+  <div class="popup popup_prices">
+    <div class="popup__content">
+      <button class="popup__close-button" aria-label="Close modal"></button>
+      <section class="price">
+        <h2 class="price__header">Price list</h2>
+        <ul class="check-box__list">
+          <li class="check-box__list-item">
+            <label><input type="checkbox" id="personal" name="option"> Personal training</label>
+          </li>
+          <li class="check-box__list-item">
+            <label><input type="checkbox" id="split" name="option"> Split training</label>
+          </li>
+          <li class="check-box__list-item">
+            <label><input type="checkbox" id="group" name="option"> Group training</label>
+          </li>
+          <li class="check-box__list-item">
+            <label><input type="checkbox" id="video" name="option"> Shooting video</label>
+          </li>
+        </ul>
+        <ul class="description-price__list">
+          <li class="description-price__list-item">
+            <label class="description-price__list-label">Duration:<input type="text" id="duration" name="duration"></label>
+          </li>
+          <li class="description-price__list-item">
+            <label class="description-price__list-label">Price:<input type="text" id="prices" name="prices"></label>
+          </li>
+          <li class="description-price__list-item">
+            <label class="description-price__list-label">Description:<input type="text" id="description" name="description"></label>
+          </li>
+        </ul>
+        <button type="button" class="priceButton">Next</button>
+      </section>
+    </div>
+  </div>
+
+
+  <div class="popup popup__navbar">
+    <div class="popup__content">
+      <button class="popup__close-button" aria-label="Close modal"></button>
+      <nav class="navbar">
+        <h2 class="navbar__title">Contacts</h2>
+        <hr class="hr">
+        <ul class="navbar__links">
+          <li class="navbar__link">
+            <a href="https://www.instagram.com/konstantinartfencing/" target="_blank">Instagram</a>
+            <p>Personal blog</p>
+          </li>
+          <li class="navbar__link">
+            <a href="https://vk.com/viganorth" target="_blank">VKontakte</a>
+            <p>More photos in albums</p>
+          </li>
+          <li class="navbar__link">
+            <a href="https://t.me/KonstantinRehabilitation" target="_blank">Telegram</a>
+            <p>Write me</p>
+          </li>
+        </ul>
+        <ul class="navbar__icons">
+          <li class="navbar__icon">
+            <a href="https://www.instagram.com/konstantinartfencing/" target="_blank">
+              <img src="./images/insta.svg" alt="Instagram icon">
+            </a>
+          </li>
+          <li class="navbar__icon">
+            <a href="https://vk.com/viganorth" target="_blank">
+              <img src="./images/vk.png" alt="VKontakte icon">
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <script type="module" src="./scripts/modal.js"></script>
+  <script type="module" src="./scripts/popup_config.js"></script>
+  <script type="module" src="./index.js"></script>
 </body>
+
 </html>
 
-<!--<ul class="main-title__image-list">
-          <li class="main-title__image-list-item">
-            <img class="main-title__icons main-title__hamburger-menu-icon" src="./images/icon-hamburger-menu.png" alt="Hamburger-menu-icon"></img>
-          </li>
-          <li class="main-title__image-list-item main-title__image-list-item_translate">
-            <img class="main-title__icons main-title__translate-menu-icon active" src="./images/rf-flag.svg" alt="Russian Federation flag translate icon"></img>
-            <img class="main-title__icons main-title__translate-menu-icon" src="./images/gb-flag.svg" alt="Great Britain flag translate icon"></img>
-          </li>
-        </ul>-->
 
-  <!-- Template 
-  <template id="popup-template">
+
+
+<!-- <template id="popup-template">
   <div class="popup">
     <div class="popup__content">
       <button class="popup__close-button" aria-label="Close modal">
-        <img src="./images/cross-swords.svg" class="popup__close-button-icon" alt="Image of cross swords">
       </button>
       <div class="popup__body"></div> 
     </div>
   </div>
-</template>
-
-  <script type="module" src="./blocks/scripts/modal.js"></script>
-  <script type="module" src="./blocks/scripts/popup_config.js"></script>
-  <script type="module" src="./index.js"></script>-->
+</template> -->
 
 <!--<div class="video-content__video-container">
     <iframe class="video-content__iframe" src="https://www.youtube.com/embed/hUbnziD6ZYU?start=3&mute=true"
@@ -147,5 +253,15 @@
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowfullscreen>
     </iframe>
-  </div>-->
+  </div>
 
+
+<template id="popup-template">
+  <div class="popup">
+    <div class="popup__content">
+      <button class="popup__close-button" aria-label="Close modal">
+      </button>
+      <div class="popup__body"></div>
+    </div>
+  </div>
+</template>-->

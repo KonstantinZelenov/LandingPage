@@ -1,0 +1,34 @@
+.video-content__description {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.video-content__description-text {
+  font-weight: var(--small-font-weight);
+  font-size: var(--main-font-size);
+  letter-spacing: 3px;
+  text-align: justify;
+  text-indent: var(--p-text-indent);
+}
+
+.video-content__video-container {
+  position: relative;
+  display: flex;
+  flex-grow: 1;
+  flex-basis: 50%;
+  width: 100%;
+  border: solid 2px antiquewhite;
+  padding: 10px;
+  aspect-ratio: 16 / 9;
+}
+
+.video-content__iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}

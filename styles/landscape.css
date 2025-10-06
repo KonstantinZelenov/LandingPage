@@ -1,10 +1,6 @@
 @media (orientation: landscape) and (max-width: 1025px) {
   .main-title {
-    padding-top: calc(clamp(0.625rem, -1.25rem + 5vw, 1.5rem) + var(--sat));
-    padding-bottom: calc(clamp(0.625rem, -1.25rem + 5vw, 1.5rem) + var(--sab));
-    padding-left: calc(clamp(0.625rem, -1.25rem + 5vw, 1.5rem) + var(--sal));
-    padding-right: calc(clamp(0.625rem, -1.25rem + 5vw, 1.5rem) + var(--sar));
-    object-position: 60% top;
+    padding: clamp(0.625rem, -1.25rem + 5vw, 1.5rem);
   }
 
   .main-title__image-list-item {
