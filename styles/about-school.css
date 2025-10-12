@@ -1,19 +1,11 @@
-.video-content__description {
+.video-content {
+  padding: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  gap: 20px;
 }
 
-.video-content__description-text {
-  font-weight: var(--small-font-weight);
-  font-size: var(--main-font-size);
-  letter-spacing: 3px;
-  text-align: justify;
-  text-indent: var(--p-text-indent);
-}
-
-.video-content__video-container {
+.video-content__container {
   position: relative;
   display: flex;
   flex-grow: 1;
@@ -32,3 +24,19 @@
   height: 100%;
   border: 0;
 }
+
+.video-content__description {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.video-content__text {
+  font-weight: var(--small-font-weight);
+  font-size: var(--main-font-size);
+  letter-spacing: 3px;
+  text-align: justify;
+  text-indent: var(--p-text-indent);
+}
+

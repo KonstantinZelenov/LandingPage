@@ -1,59 +1,39 @@
-.form__list {
+.contact-form__list {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.form__list-item {
+.contact-form__field {
   display: flex;
 }
 
-.form__list-item:first-child {
+.contact-form__field:first-child {
   padding-top: 10px;
 }
 
-.form__label {
-  display: inline-block;
-  width: 90px;
-  text-align: center;
-  text-transform: uppercase;
-}
-
-.form__legend {
-  text-transform: uppercase;
-}
-
-.form__input,
-.form__textarea,
-.form__select {
+.contact-form__input,
+.contact-form__textarea,
+.contact-form__select {
   flex-grow: 1;
   box-sizing: border-box;
   font-family: inherit;
   text-transform: uppercase;
 }
 
-.form__input:focus-visible,
-.form__textarea:focus-visible,
-.form__select:focus-visible {
+.contact-form__input:focus-visible,
+.contact-form__textarea:focus-visible,
+.contact-form__select:focus-visible {
   outline: 1px dashed antiquewhite;
   outline-offset: 1px;
 }
 
-.form__textarea {
+.contact-form__textarea {
   height: 80px;
   vertical-align: top;
 }
 
-.form__list-item:last-child {
-  justify-content: flex-end;
-}
-
-.form__fieldset {
-  border-radius: 1rem;
-  padding: 0;
-}
-
-.form__button {
+.contact-form__button {
   margin: 2px;
   border: 1px solid antiquewhite;
   border-radius: 2px;
@@ -65,20 +45,20 @@
   background-color: transparent;
 }
 
-.form__button:focus {
+.contact-form__button:focus {
   outline: none;
 }
 
-.form__button:focus-visible {
+.contact-form__button:focus-visible {
   outline: 1px dashed antiquewhite;
   outline-offset: 1px;
 }
 
-.form__button:hover {
+.contact-form__button:hover {
   color: red;
 }
 
-.form__button:active {
+.contact-form__button:active {
   color: antiquewhite;
   background-color: gray;
 }

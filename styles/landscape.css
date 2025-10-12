@@ -1,36 +1,36 @@
 @media (orientation: landscape) and (max-width: 1025px) {
-  .main-title {
+  .main {
     padding: clamp(0.625rem, -1.25rem + 5vw, 1.5rem);
   }
 
-  .main-title__image-list-item {
-    inline-size: clamp(1.25rem, -0.909rem + 7.2vw, 2.6rem);
-    block-size: clamp(1.25rem, -0.909rem + 7.2vw, 2.6rem);
-  }
-
-  .popup__image-list-item {
-    inline-size: clamp(1.25rem, -0.909rem + 7.2vw, 2.6rem);
-    block-size: clamp(1.25rem, -0.909rem + 7.2vw, 2.6rem);
-  }
-
-  .main-title__image-list {
+  .main__icons {
     top: clamp(80px, 14.7059px + 14.7059vw, 160px);
     gap: clamp(0.7rem, 0.0147rem + 2.38vw, 2rem);
   }
 
-  .main-title__header {
+  .main__icon {
+    inline-size: clamp(1.25rem, -0.909rem + 7.2vw, 2.6rem);
+    block-size: clamp(1.25rem, -0.909rem + 7.2vw, 2.6rem);
+  }
+
+  .contacts-button {
+    inline-size: clamp(1.25rem, -0.909rem + 7.2vw, 2.6rem);
+    block-size: clamp(1.25rem, -0.909rem + 7.2vw, 2.6rem);
+  }
+
+  .main__header {
     font-size: clamp(0.6rem, 0.5rem + 4.5vw, 8rem);
     letter-spacing: clamp(0.1rem, 0.0625rem + 0.6vw, 0.75rem);
   }
 
-  .main-title__text {
+  .main__description {
     font-size: clamp(0.4rem, 0.125rem + 2vw, 1rem);
     letter-spacing: clamp(0.1rem, 0.05rem + 0.35vw, 1.8rem);
   }
 }
 
 @media (orientation: landscape) and (min-width: 1025px) {
-  .main-title {
+  .main {
     padding: 
       calc(clamp(1.5rem, 1rem + 1vw, 3rem) + var(--sat))
       calc(clamp(1.5rem, 1rem + 1vw, 3rem) + var(--sar))
@@ -38,27 +38,27 @@
       calc(clamp(1.5rem, 1rem + 1vw, 3rem) + var(--sal));
   }
 
-  .main-title__image-list-item {
-    inline-size: clamp(2.6rem, 2rem + 1vw, 4rem);
-    block-size: clamp(2.6rem, 2rem + 1vw, 4rem);
-  }
-
-  .popup__image-list-item {
-    inline-size: clamp(2.6rem, 2rem + 1vw, 4rem);
-    block-size: clamp(2.6rem, 2rem + 1vw, 4rem);
-  }
-
-  .main-title__image-list {
+  .main__icons {
     top: clamp(160px, 10vh, 300px);
     gap: clamp(2rem, 1rem + 1vw, 3rem);
   }
 
-  .main-title__header {
+  .main__icon {
+    inline-size: clamp(2.6rem, 2rem + 1vw, 4rem);
+    block-size: clamp(2.6rem, 2rem + 1vw, 4rem);
+  }
+
+  .contacts-button {
+    inline-size: clamp(2.6rem, 2rem + 1vw, 4rem);
+    block-size: clamp(2.6rem, 2rem + 1vw, 4rem);
+  }
+
+  .main__header {
     font-size: clamp(4rem, 3rem + 2vw, 8rem);
     letter-spacing: clamp(0.75rem, 0.5rem + 0.5vw, 1.5rem);
   }
 
-  .main-title__text {
+  .main__description {
     font-size: clamp(1rem, 0.8rem + 0.5vw, 2rem);
     letter-spacing: clamp(0.5rem, 0.3rem + 0.5vw, 1.5rem);
   }

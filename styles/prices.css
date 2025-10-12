@@ -1,4 +1,4 @@
-.price {
+.prices-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -6,7 +6,18 @@
   gap: 16px;
 }
 
-.check-box__list {
+.prices-form__fieldset {
+  border: none;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.prices-form__legend {
+  font-size: var(--header-font-size, 30px);
+}
+
+.training-types {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -14,26 +25,18 @@
   text-transform: uppercase;
 }
 
-.description-price__list {
+.form-details {
   display: flex;
   flex-direction: column;
   gap: 16px;
   width: 100%;
 }
 
-.description-price__list-label {
+.form-details__label {
   width: 120px;
   text-align: left;
   text-transform: uppercase;
 }
 
-.description-price__list-item {
-  gap: 16px;
-}
 
-.description-price__list input[type="text"] {
-  flex-grow: 1;
-  text-transform: uppercase;
-  word-wrap: break-word;
-  resize: vertical;
-}
+

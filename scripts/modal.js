@@ -15,8 +15,9 @@ export function openPopup(popup) {
     }
   };
   
-  popup.dataset.escapeHandler = handleEscape;
-  popup.dataset.overlayHandler = handleOverlayClick;
+  // Сохраняем ссылки на функции в свойствах popup
+  popup._escapeHandler = handleEscape;
+  popup._overlayHandler = handleOverlayClick;
   
   document.addEventListener('keydown', handleEscape);
   popup.addEventListener('click', handleOverlayClick);
@@ -27,13 +28,22 @@ export function closePopup(popup) {
   
   popup.classList.remove('popup_is-opened');
   
-  document.removeEventListener('keydown', popup.dataset.escapeHandler);
-  popup.removeEventListener('click', popup.dataset.overlayHandler);
+  // Используем сохраненные функции
+  document.removeEventListener('keydown', popup._escapeHandler);
+  popup.removeEventListener('click', popup._overlayHandler);
+  
+  // Очищаем ссылки
+  delete popup._escapeHandler;
+  delete popup._overlayHandler;
 }
 
 export function setupCloseButton(popup) {
   const closeButton = popup.querySelector('.popup__close-button');
   if (closeButton) {
-    closeButton.addEventListener('click', () => closePopup(popup));
+    // Удаляем старый обработчик перед добавлением нового (на всякий случай)
+    closeButton.replaceWith(closeButton.cloneNode(true));
+    const newCloseButton = popup.querySelector('.popup__close-button');
+    
+    newCloseButton.addEventListener('click', () => closePopup(popup));
   }
 }

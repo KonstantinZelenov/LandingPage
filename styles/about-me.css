@@ -1,11 +1,11 @@
-.popup_about-me__text {
+.popup__text {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.popup_about-me__text p {
+.popup__paragraph {
   font-weight: var(--small-font-weight);
   font-size: var(--main-font-size);
   letter-spacing: 3px;

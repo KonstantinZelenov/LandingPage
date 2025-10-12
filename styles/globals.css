@@ -20,6 +20,15 @@ p {
   padding: 0;
 }
 
+h2,
+h3,
+h4,
+h5 {
+  font-weight: var(--big-font-weight);
+  font-style: normal;
+  text-transform: uppercase;
+}
+
 ul,
 ol {
   margin: 0;

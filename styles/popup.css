@@ -48,7 +48,7 @@
   background: url('../images/cross-swords.svg') center / contain no-repeat;
 }
 
-.popup__image-list-item {
+.contacts-button {
   position: relative;
   z-index: 10;
   align-self: center;
@@ -57,33 +57,33 @@
   animation: pulse 7s ease-in-out infinite;
   cursor: pointer;
   aspect-ratio: 1 / 1;
+  background-color: transparent;
 }
 
-.popup__image-list-item:hover {
-  cursor: pointer;
-}
-
-.popup__contacts-menu-icon {
+.contacts-button__icon {
   position: absolute;
   opacity: 0;
   transition: opacity 1s linear;
+  inset: 0;
 }
 
-.popup__contacts-menu-icon.active {
+.contacts-button__icon.active {
   opacity: 1;
 }
 
-.popup__links {
+.popup__list {
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
   gap: 20px;
-  font-size: 30px;
   flex-direction: column;
-  font-family: 'Witcher'
 }
 
-.popup__links-li {
+.popup__button {
+  font-family: 'Witcher';
+  font-size: 30px;
   cursor: pointer;
+  background-color: transparent;
+  color: var(--main-color);
 }
 

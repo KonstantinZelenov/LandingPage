@@ -1,4 +1,4 @@
-.main-title {
+.main {
   position: relative;
   transition: all 0.3s ease;
   block-size: 100vh;
@@ -10,7 +10,7 @@
   width: 100%;
 }
 
-.main-title__header {
+.main__header {
   font-weight: var(--small-font-weight);
   text-align: center;
   text-transform: uppercase;
@@ -19,14 +19,14 @@
   font-family: 'Kaushan';
 }
 
-.main-title__text {
+.main__description {
   text-align: center;
   text-transform: uppercase;
   transition: all 0.3s ease;
   font-family: 'Witcher';
 }
 
-.main-title__picture {
+.main__picture {
     position: absolute;
     top: 0;
     left: 0;
@@ -37,21 +37,21 @@
     object-position: center top;
   }
 
-  .main-title__image {
+  .main__image {
     width: 100%;
     height: auto;
     object-fit: contain; 
     object-position: center top;
   }
 
-.main-title__image-list {
+.main__icons {
   position: absolute;
   display: flex;
   flex-direction: column;
   transition: all 0.3s ease;
 }
 
-.main-title__image-list-item {
+.main__icon {
   position: relative;
   z-index: 10;
   transition: all 0.3s ease;
@@ -61,21 +61,7 @@
   aspect-ratio: 1 / 1;
 }
 
-.main-title__image-list-item:hover {
-  cursor: pointer;
-}
-
-.main-title__contacts-menu-icon {
-  position: absolute;
-  opacity: 0;
-  transition: opacity 1s linear;
-}
-
-.main-title__contacts-menu-icon.active {
-  opacity: 1;
-}
-
-.main-title__translate-menu-icon {
+.lang-switcher__flag {
   position: absolute;
   top: 0;
   left: 0;
@@ -83,6 +69,10 @@
   transition: opacity 1s linear;
 }
 
-.main-title__translate-menu-icon.active {
+.lang-switcher__flag.active {
   opacity: 1;
+}
+
+.menu-button {
+  background-color: transparent;
 }

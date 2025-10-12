@@ -1,91 +1,26 @@
 import { openPopup, setupCloseButton } from './scripts/modal.js';
 
-const humburgerButton = document.querySelector('.main-title__hamburger-menu-icon');
-const contactsButton = document.querySelector('[data-popup="contacts"]');
-const aboutMeButton = document.querySelector('[data-popup="about-me"]');
-const aboutProjectsButton = document.querySelector('[data-popup="about-projects"]');
-const aboutSchoolButton = document.querySelector('[data-popup="about-school"]');
-const priceButton = document.querySelector('[data-popup="price"]');
+const popupConfigs = [
+  { button: '.menu-button__icon', popup: '.popup_main-menu' },
+  { button: '[data-popup="contacts"]', popup: '.popup_navbar' },
+  { button: '[data-popup="about-me"]', popup: '.popup_about-me' },
+  { button: '[data-popup="about-projects"]', popup: '.popup_projects' },
+  { button: '[data-popup="about-school"]', popup: '.popup_about-school' },
+  { button: '[data-popup="price"]', popup: '.popup_prices' },
+  { button: '.prices-form__button', popup: '.popup_contacts' }
+];
 
-function openMainMenu() {
-  if (humburgerButton) {
-    humburgerButton.addEventListener('click', () => {
-      const popup = document.querySelector('.popup_main-menu');
+popupConfigs.forEach(config => {
+  const button = document.querySelector(config.button);
+  const popup = document.querySelector(config.popup);
+  
+  if (button && popup) {
+    button.addEventListener('click', () => {
       openPopup(popup);
       setupCloseButton(popup);
     });
   }
-}
-
-openMainMenu();
-
-function openContactsPopup() {
-  if (contactsButton) {
-    contactsButton.addEventListener('click', () => {
-      const popup = document.querySelector('.popup__navbar');
-      openPopup(popup);
-      setupCloseButton(popup);
-    });
-  }
-}
-
-openContactsPopup();
-
-function openAboutMePopup() {
-  if (aboutMeButton) {
-    aboutMeButton.addEventListener('click', () => {
-      const popup = document.querySelector('.popup_about-me');
-      openPopup(popup);
-      setupCloseButton(popup);
-    });
-  }
-}
-
-openAboutMePopup();
-
-function openAboutProjectsPopup() {
-  if (aboutProjectsButton) {
-    aboutProjectsButton.addEventListener('click', () => {
-      const popup = document.querySelector('.popup_projects');
-      openPopup(popup);
-      setupCloseButton(popup);
-    });
-  }
-}
-
-openAboutProjectsPopup()
-
-
-function openAboutSchoolPopup() {
-  if (aboutSchoolButton) {
-    aboutSchoolButton.addEventListener('click', () => {
-      const popup = document.querySelector('.popup_about-school');
-      openPopup(popup);
-      setupCloseButton(popup);
-    });
-  }
-}
-
-openAboutSchoolPopup()
-
-
-function openPricesPopup() {
-  if (priceButton) {
-    priceButton.addEventListener('click', () => {
-      const popup = document.querySelector('.popup_prices');
-      openPopup(popup);
-      setupCloseButton(popup);
-    });
-  }
-}
-
-openPricesPopup()
-
-
-
-
-
-
+});
 
 function setupIconAnimation(containerSelector, iconSelector, interval = 7000) {
   const container = document.querySelector(containerSelector);
@@ -137,8 +72,8 @@ function setupIconAnimation(containerSelector, iconSelector, interval = 7000) {
 }
 
 function initAnimation() {
-  setupIconAnimation('.popup__image-list-item_contacts', '.popup__contacts-menu-icon');
-  setupIconAnimation('.main-title__image-list-item_translate', '.main-title__translate-menu-icon');
+  setupIconAnimation('.contacts-button', '.contacts-button__icon');
+  setupIconAnimation('.main__icon-translate', '.lang-switcher__flag');
 }
 
 function setViewportHeight() {
@@ -158,41 +93,3 @@ document.addEventListener('DOMContentLoaded', () => {
   initAnimation();
 });
 
-
-// Создаю модальное окно 
-/*
-function createPopup(name, config) {
-  const template = document.getElementById('popup-template');
-  const popup = template.content.cloneNode(true).querySelector('.popup');
-  popup.classList.add(`popup_${name}`);
-
-  const body = popup.querySelector('.popup__body');
-  
-  body.insertAdjacentHTML('beforeend', config.content);
-
-  document.body.appendChild(popup);
-  popup.addEventListener('click', (e) => closePopup(e, popup));
-  setupCloseButton(popup);
-
-  return popup;
-}
-
-function initAllPopups() {
-  const popups = {};
-  
-  Object.entries(POPUPS_CONFIG).forEach(([name, config]) => {
-    popups[name] = createPopup(name, config);
-    
-    config.triggers?.forEach(trigger => {
-      document.querySelectorAll(trigger.selector).forEach(el => {
-        el.addEventListener('click', () => {
-          if (trigger.parentPopup) {
-            closePopup({ target: popups[trigger.parentPopup] }, popups[trigger.parentPopup]);
-          }
-          openPopup(popups[name]);
-        });
-      });
-    });
-  });
-}
-*/
