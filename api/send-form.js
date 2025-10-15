@@ -20,9 +20,8 @@ export default async function handler(request, response) {
     // Получаем данные из формы
     const formData = await request.json();
     
-    //ДАННЫЕ ИЗ ТЕЛЕГРАМА 
-    const TELEGRAM_BOT_TOKEN = '8442121844:AAEfNQ8LDxSyjlaxgKDutqbwpOjQRBFNi8Y';
-    const TELEGRAM_CHAT_ID = '5132017555'; // ID чата из шага 2
+    const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
+    const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
     
     // Форматируем красивое сообщение
     const message = `
