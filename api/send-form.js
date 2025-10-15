@@ -1,5 +1,3 @@
-// Этот код будет работать на сервере Vercel
-
 export default async function handler(request, response) {
   // Разрешаем запросы с любого сайта (CORS)
   response.setHeader('Access-Control-Allow-Origin', '*');

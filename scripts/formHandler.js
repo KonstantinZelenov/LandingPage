@@ -60,21 +60,3 @@ async function handleContactSubmit(event) {
     alert('There was an error sending your message. Please try again.');
   }
 }
-
-
-
- /* ВРЕМЕННО: Выводим объект в консоль для проверки
-  console.log('📦 Данные для отправки на сервер:', submissionData);
-  console.log('🔍 Разбор данных:');
-  console.log('   👤 Имя:', submissionData.name);
-  console.log('   📧 Email:', submissionData.mail);
-  console.log('   🗡️ Тип урока:', submissionData.lesson_type);
-  console.log('   💬 Сообщение:', submissionData.message);
-  console.log('   🏋️‍♂️ Тип тренировки:', submissionData.trainingType);
-  console.log('   ⏱️ Длительность:', submissionData.duration);
-  console.log('   💰 Цена:', submissionData.price);
-  console.log('   📝 Описание:', submissionData.description);
-  
-  // TODO: временно отключаем отправку для тестирования
-  console.log('🚫 Отправка на сервер временно отключена для тестирования');
-  return; */
