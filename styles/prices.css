@@ -38,5 +38,19 @@
   text-transform: uppercase;
 }
 
+.form-details__input {
+  inline-size: 100%;
+  font-family: 'Witcher';
+  color: var(--main-color);
+  justify-content: stretch;
+  background-color: transparent;
+}
+
+.form-details__input_textarea {
+  line-height: 1.4;
+  white-space: pre-wrap; /* сохранять переносы строк */
+  word-wrap: break-word; /* переносить длинные слова */
+}
+
 
 

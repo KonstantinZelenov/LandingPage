@@ -29,7 +29,7 @@
   }
 }
 
-@media (orientation: landscape) and (min-width: 1025px) {
+@media (orientation: landscape) and (min-width: 1024px) {
   .main {
     padding: 
       calc(clamp(1.5rem, 1rem + 1vw, 3rem) + var(--sat))
@@ -63,3 +63,5 @@
     letter-spacing: clamp(0.5rem, 0.3rem + 0.5vw, 1.5rem);
   }
 }
+
+

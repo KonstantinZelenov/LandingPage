@@ -55,10 +55,11 @@
 }
 
 .contact-form__button:hover {
-  color: red;
+  color: antiquewhite;
+  background-color: gray;
 }
 
 .contact-form__button:active {
-  color: antiquewhite;
-  background-color: gray;
+  color: #000000;
+  
 }

@@ -9,6 +9,7 @@ const pricesContainer = document.querySelector('.popup_prices');
 const contactsContainer = document.querySelector('.popup_contacts');
 const navbarContainer = document.querySelector('.popup_navbar');
 
+
 const mainTranslations = {
     ru: {
         name: 'Константин Зеленов',
@@ -157,139 +158,96 @@ const navbarTranslations = {
     }
 };
 
-let currentLang = 'en';
+const createTranslationManager = () => {
+    const modules = [];
+    let currentLang = 'en';
 
-function translateMainPage(lang) {
-    const elements = mainContainer.querySelectorAll('[data-i18n]');
-    
-    elements.forEach(element => {
-        const key = element.getAttribute('data-i18n');
-        if (mainTranslations[lang]?.[key]) {
-            element.textContent = mainTranslations[lang][key];
+    return {
+        addModule(container, translations, processor = null) {
+            modules.push({ container, translations, processor });
+        },
+        
+        translateModule(container, lang) {
+            const module = modules.find(m => m.container === container);
+            if (!module) return;
+            
+            // Стандартный перевод текстов
+            const elements = module.container.querySelectorAll('[data-i18n]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (module.translations[lang]?.[key]) {
+                    element.textContent = module.translations[lang][key];
+                }
+            });
+            
+            // Кастомная обработка если есть
+            if (module.processor) {
+                module.processor(module.container, lang, module.translations);
+            }
+        },
+        
+        translateAll(lang) {
+            modules.forEach(module => {
+                this.translateModule(module.container, lang);
+            });
+            currentLang = lang;
+        },
+        
+        getCurrentLang() {
+            return currentLang;
+        },
+        
+        // Дополнительно: можно переводить конкретный модуль по ID
+        translateModuleById(moduleId, lang) {
+            const module = modules[moduleId];
+            if (module) {
+                this.translateModule(module.container, lang);
+            }
         }
-    });
-    
-}
+    };
+};
 
-function translateMainMenu(lang) {
-    const elements = menuContainer.querySelectorAll('[data-i18n]');
-    
-    elements.forEach(element => {
-        const key = element.getAttribute('data-i18n');
-        if (menuTranslations[lang]?.[key]) {
-            element.textContent = menuTranslations[lang][key];
-        }
-    });
-}
+const translator = createTranslationManager();
 
-function translateAboutMe(lang) {
-    const elements = aboutMeContainer.querySelectorAll('[data-i18n]');
-    
-    elements.forEach(element => {
-        const key = element.getAttribute('data-i18n');
-        if (aboutMeTranslations[lang]?.[key]) {
-            element.textContent = aboutMeTranslations[lang][key];
-        }
-    });
-}
-
-function translateProjects(lang) {
-    const elements = projectsContainer.querySelectorAll('[data-i18n]');
-    
-    elements.forEach(element => {
-        const key = element.getAttribute('data-i18n');
-        if (projectsTranslations[lang]?.[key]) {
-            element.textContent = projectsTranslations[lang][key];
-        }
-    });
-}
-
-function translateSchool(lang) {
-    const elements = schoolContainer.querySelectorAll('[data-i18n]');
-    
-    elements.forEach(element => {
-        const key = element.getAttribute('data-i18n');
-        if (aboutSchoolTranslations[lang]?.[key]) {
-            element.textContent = aboutSchoolTranslations[lang][key];
-        }
-    });
-}
-
-function translatePrices(lang) {
-    const elements = pricesContainer.querySelectorAll('[data-i18n]');
-    
-    elements.forEach(element => {
-        const key = element.getAttribute('data-i18n');
-        if (pricesTranslations[lang]?.[key]) {
-            element.textContent = pricesTranslations[lang][key];
-        }
-    });
-}
-
-function translateContacts(lang) {
-    const elements = contactsContainer.querySelectorAll('[data-i18n]');
-    const placeholderElements = contactsContainer.querySelectorAll('[data-i18n-placeholder]');
-    
-    elements.forEach(element => {
-        const key = element.getAttribute('data-i18n');
-        if (contactsTranslations[lang]?.[key]) {
-            element.textContent = contactsTranslations[lang][key];
-        }
-    });
-    
+translator.addModule(mainContainer, mainTranslations);
+translator.addModule(menuContainer, menuTranslations);
+translator.addModule(aboutMeContainer, aboutMeTranslations);
+translator.addModule(projectsContainer, projectsTranslations);
+translator.addModule(schoolContainer, aboutSchoolTranslations);
+translator.addModule(pricesContainer, pricesTranslations);
+translator.addModule(contactsContainer, contactsTranslations, (container, lang, translations) => {
+    const placeholderElements = container.querySelectorAll('[data-i18n-placeholder]');
     placeholderElements.forEach(element => {
         const key = element.getAttribute('data-i18n-placeholder');
-        if (contactsTranslations[lang]?.[key]) {
-            element.setAttribute('placeholder', contactsTranslations[lang][key]);
+        if (translations[lang]?.[key]) {
+            element.setAttribute('placeholder', translations[lang][key]);
         }
     });
-}
+});
+translator.addModule(navbarContainer, navbarTranslations);
 
-function translateNavbar(lang) {
-    const elements = navbarContainer.querySelectorAll('[data-i18n]');
-    
-    elements.forEach(element => {
-        const key = element.getAttribute('data-i18n');
-        if (navbarTranslations[lang]?.[key]) {
-            element.textContent = navbarTranslations[lang][key];
-        }
-    });
-}
 
+translator.translateAll('en');
 
 function handleTranslateClick() {
+    const currentLang = translator.getCurrentLang();
     const nextLang = currentLang === 'en' ? 'ru' : 'en';
     
-    translateMainPage(nextLang);
-    translateMainMenu(nextLang);
-    translateAboutMe(nextLang);
-    translateProjects(nextLang);
-    translateSchool(nextLang);
-    translatePrices(nextLang);
-    translateContacts(nextLang);
-    translateNavbar(nextLang);
+    translator.translateAll(nextLang);
 
     flags[0].classList.toggle('active', nextLang === 'ru');
     flags[1].classList.toggle('active', nextLang === 'en');
-    
-    currentLang = nextLang;
 }
 
 function initTranslations() {
     if (translateButton) {
-        translateMainPage(currentLang);
-        translateMainMenu(currentLang);
-        translateAboutMe(currentLang);
-        translateProjects(currentLang);
-        translateSchool(currentLang);
-        translatePrices(currentLang);
-        translateContacts(currentLang);
-        translateNavbar(currentLang);
-
         translateButton.addEventListener('click', handleTranslateClick);
     }
 }
 
 initTranslations();
+
+
+
 
 

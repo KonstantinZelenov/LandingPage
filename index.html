@@ -163,20 +163,20 @@
           <legend class="prices-form__legend" data-i18n="prices_title">Price list</legend>
           <ul class="training-types">
             <li class="training-types__item">
+              <input class="training-types__radio" type="radio" id="personal" name="trainingType" value="personal">
               <label class="training-types__label" for="personal" data-i18n="training_personal">Personal training</label>
-              <input class="training-types__checkbox" type="checkbox" id="personal" name="option">
             </li>
             <li class="training-types__item">
+              <input class="training-types__radio" type="radio" id="split" name="trainingType" value="split">
               <label class="training-types__label" for="split" data-i18n="training_split">Split training</label>
-              <input class="training-types__checkbox" type="checkbox" id="split" name="option">
             </li>
             <li class="training-types__item">
+              <input class="training-types__radio" type="radio" id="group" name="trainingType" value="group">
               <label class="training-types__label" for="group" data-i18n="training_group">Group training</label>
-              <input class="training-types__checkbox" type="checkbox" id="group" name="option">
             </li>
             <li class="training-types__item">
+              <input class="training-types__radio" type="radio" id="video" name="trainingType" value="video">
               <label class="training-types__label" for="video" data-i18n="making_video">Shooting video</label>
-              <input class="training-types__checkbox" type="checkbox" id="video" name="option">
             </li>
           </ul>
           <ul class="form-details">
@@ -186,11 +186,11 @@
             </li>
             <li class="form-details__item">
               <label class="form-details__label" for="prices" data-i18n="prices_price">Price:</label>
-              <input class="form-details__input" type="number" id="prices" name="prices">
+              <input class="form-details__input" type="text" id="prices" name="prices">
             </li>
             <li class="form-details__item">
               <label class="form-details__label" for="description" data-i18n="prices_description">Description:</label>
-              <input class="form-details__input" type="text" id="description" name="description">
+              <textarea class="form-details__input form-details__input_textarea" id="description" name="description" rows="6"></textarea>
             </li>
           </ul>
           <button class="prices-form__button" data-i18n="prices_next" type="button">Next</button>
@@ -294,6 +294,8 @@
   <script type="module" src="./scripts/modal.js"></script>
   <script type="module" src="./scripts/lang-config.js"></script>
   <script type="module" src="./index.js"></script>
+  <script type="module" src="./scripts/radio.js"></script>
+  <script type="module" src="./scripts/formHandler.js"></script>
 </body>
 
 </html>

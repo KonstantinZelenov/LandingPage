@@ -1,4 +1,6 @@
 import { openPopup, setupCloseButton } from './scripts/modal.js';
+import { savePricingData } from './scripts/radio.js';
+import { initContactForm } from './scripts/formHandler.js';
 
 const popupConfigs = [
   { button: '.menu-button__icon', popup: '.popup_main-menu' },
@@ -21,6 +23,25 @@ popupConfigs.forEach(config => {
     });
   }
 });
+
+// Специальный обработчик для кнопки "Next" в форме цен
+const nextButton = document.querySelector('.prices-form__button');
+const contactsPopup = document.querySelector('.popup_contacts');
+
+if (nextButton && contactsPopup) {
+  nextButton.addEventListener('click', () => {
+    // Сохраняем данные перед переходом
+    if (savePricingData()) {
+      openPopup(contactsPopup);
+      setupCloseButton(contactsPopup);
+    } else {
+      alert('Please select a training type');
+    }
+  });
+}
+
+
+
 
 function setupIconAnimation(containerSelector, iconSelector, interval = 7000) {
   const container = document.querySelector(containerSelector);
@@ -87,8 +108,11 @@ window.addEventListener('resize', setViewportHeight);
 window.addEventListener('orientationchange', setViewportHeight);
 window.addEventListener('load', setViewportHeight);
 
+
+
 // Запуск инициализации
 document.addEventListener('DOMContentLoaded', () => {
+  initContactForm();
   setViewportHeight();
   initAnimation();
 });
