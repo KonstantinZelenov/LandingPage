@@ -30,8 +30,8 @@ async function handleContactSubmit(event) {
   };
   
   try {
-    // Отправляем на сервер
-    const response = await fetch('/api/send-form', {
+    const baseURL = window.location.origin;
+    const response = await fetch(`${baseURL}/api/send-form`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
