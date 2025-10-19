@@ -1,0 +1,30 @@
+.button {
+  margin: 2px;
+  border: 1px solid antiquewhite;
+  border-radius: 2px;
+  padding: 2px 5px;
+  color: inherit;
+  font-family: var(--main-font-family);
+  font-size: inherit;
+  text-transform: uppercase;
+  background-color: transparent;
+  inline-size: 100%;
+}
+
+.button:focus {
+  outline: none;
+}
+
+.button:focus-visible {
+  outline: 1px dashed antiquewhite;
+  outline-offset: 1px;
+}
+
+.button:hover {
+  color: antiquewhite;
+  background-color: gray;
+}
+
+.button:active {
+  color: #000000;
+}

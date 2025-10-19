@@ -1,31 +1,138 @@
 import { closePopup } from './modal.js';
+import { validateForm, createRealTimeValidator } from './validators.js';
+
+let realTimeValidate;
 
 export function initContactForm() {
   const contactForm = document.querySelector('.contact-form');
   
   if (!contactForm) return;
   
+  initRealTimeValidation(contactForm);
+
   contactForm.addEventListener('submit', handleContactSubmit);
 }
 
-async function handleContactSubmit(event) {
-  event.preventDefault();
+function initRealTimeValidation(form) {
+  // Создаем валидатор с дебаунсом
+  realTimeValidate = createRealTimeValidator((fieldName, result) => {
+    showFieldError(fieldName, result);
+  });
   
-  // Получаем данные из sessionStorage
-  const pricingData = JSON.parse(sessionStorage.getItem('pricingData') || '{}');
+  // Находим поля и вешаем обработчики
+  const nameInput = form.querySelector('#name');
+  const emailInput = form.querySelector('#mail');
+  const messageInput = form.querySelector('#message');
   
-  // Получаем данные из контактной формы
-  const formData = new FormData(event.target);
-  const contactData = {
+  if (nameInput) {
+    nameInput.addEventListener('input', () => realTimeValidate('name', nameInput.value));
+    nameInput.addEventListener('blur', () => realTimeValidate('name', nameInput.value));
+  }
+  
+  if (emailInput) {
+    emailInput.addEventListener('input', () => realTimeValidate('email', emailInput.value));
+    emailInput.addEventListener('blur', () => realTimeValidate('email', emailInput.value));
+  }
+  
+  if (messageInput) {
+    messageInput.addEventListener('blur', () => realTimeValidate('message', messageInput.value));
+  }
+}
+
+function showFieldError(fieldName, validationResult) {
+  const field = document.querySelector(`[name="${fieldName}"]`);
+  const errorElement = document.querySelector(`[data-field="${fieldName}"]`);
+  
+  if (!field || !errorElement) return;
+  
+  // Очищаем предыдущие стили
+  field.classList.remove('error', 'valid');
+  errorElement.textContent = '';
+  
+  if (validationResult.isValid) {
+    field.classList.add('valid');
+  } else {
+    field.classList.add('error');
+    // Показываем первую ошибку
+    const firstError = validationResult.errors[0];
+    errorElement.textContent = getTranslatedError(firstError);
+  }
+}
+
+function showAllErrors(formErrors) {
+  // Показываем все ошибки при отправке
+  Object.keys(formErrors).forEach(fieldName => {
+    const validationResult = {
+      isValid: false,
+      errors: formErrors[fieldName]
+    };
+    showFieldError(fieldName, validationResult);
+  });
+  
+  // Скроллим к первой ошибке
+  const firstErrorField = document.querySelector('.contact-form__input.error');
+  if (firstErrorField) {
+    firstErrorField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    firstErrorField.focus();
+  }
+}
+
+function getTranslatedError(errorKey) {
+  // Здесь будет связь с твоей системой перевода
+  // Пока возвращаем русские тексты
+  const errorTexts = {
+    'name_required': 'Имя обязательно для заполнения',
+    'name_minLength': 'Имя должно содержать минимум 2 символа',
+    'name_maxLength': 'Имя не должно превышать 50 символов',
+    'name_pattern': 'Имя может содержать только буквы, пробелы и дефисы',
+    'name_validate': 'Введите реальное имя',
+    
+    'email_required': 'Email обязателен для заполнения',
+    'email_pattern': 'Введите корректный email адрес',
+    'email_validate': 'Проверьте правильность email адреса',
+    
+    'lesson_type_required': 'Выберите тип оружия для тренировки',
+    
+    'message_required': 'Сообщение обязательно для заполнения',
+    'message_minLength': 'Сообщение должно содержать минимум 10 символов',
+    'message_maxLength': 'Сообщение не должно превышать 1000 символов',
+    'message_validate': 'Сообщение содержит недопустимые слова или символы'
+  };
+  
+  return errorTexts[errorKey] || 'Ошибка валидации';
+}
+
+function getFormData(form) {
+  const formData = new FormData(form);
+  return {
     name: formData.get('name'),
     mail: formData.get('mail'),
     lesson_type: formData.get('lesson_type'),
     message: formData.get('message')
   };
+}
+
+async function handleContactSubmit(event) {
+  event.preventDefault();
+  
+  // Получаем данные формы
+  const formData = getFormData(event.target);
+  
+  // ВАЛИДАЦИЯ: НОВЫЙ КОД
+  const validation = validateForm(formData);
+  
+  if (!validation.isValid) {
+    showAllErrors(validation.errors);
+    return; // Останавливаем отправку если есть ошибки
+  }
+  // КОНЕЦ ВАЛИДАЦИИ
+  
+  // Получаем данные из sessionStorage
+  const pricingData = JSON.parse(sessionStorage.getItem('pricingData') || '{}');
   
   // Объединяем данные в плоскую структуру
   const submissionData = {
-    ...contactData,
+    ...formData,
     ...pricingData
   };
   
@@ -60,3 +167,35 @@ async function handleContactSubmit(event) {
     alert('There was an error sending your message. Please try again.');
   }
 }
+
+
+
+/*
+2. Loading states:
+
+javascript
+// В handleContactSubmit
+const submitBtn = event.target.querySelector('button[type="submit"]');
+const originalText = submitBtn.textContent;
+submitBtn.disabled = true;
+submitBtn.textContent = 'Sending...';
+
+// В finally или после response
+submitBtn.disabled = false;
+submitBtn.textContent = originalText;
+3. Вместо alert():
+
+css
+ Добавить стили для уведомлений 
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 15px;
+  border-radius: 5px;
+  z-index: 10000;
+}
+.notification.success { background: green; }
+.notification.error { background: red; } */
+
+

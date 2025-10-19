@@ -6,6 +6,7 @@
   --small-font-weight: 300;
   --big-font-weight: 500;
   --size-footer-img: 3.75rem;
+  --main-font-family: "Witcher";
 
   /* Safe area variables */
   --sat: env(safe-area-inset-top, 0px);

@@ -41,79 +41,44 @@ if (nextButton && contactsPopup) {
 }
 
 
-
-
-function setupIconAnimation(containerSelector, iconSelector, interval = 7000) {
+function animateIcons(containerSelector, iconSelector, interval = 3500) {
   const container = document.querySelector(containerSelector);
   if (!container) return;
 
   const icons = container.querySelectorAll(iconSelector);
-  if (icons.length === 0) return;
+  if (icons.length < 2) return;
 
   let currentIndex = 0;
-  let intervalId = null;
-
-  function changeIcon() {
+  
+  // Показываем первую иконку сразу
+  icons[currentIndex].classList.add('active');
+  
+  // Запускаем анимацию
+  return setInterval(() => {
     icons[currentIndex].classList.remove('active');
     currentIndex = (currentIndex + 1) % icons.length;
     icons[currentIndex].classList.add('active');
-  }
-
-  function startAnimation() {
-    if (intervalId) return;
-    changeIcon(); 
-    intervalId = setInterval(changeIcon, interval);
-  }
-
-  function stopAnimation() {
-    if (!intervalId) return;
-    clearInterval(intervalId);
-    intervalId = null;
-  }
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          startAnimation();
-        } else {
-          stopAnimation(); 
-        }
-      });
-    },
-    { threshold: 0.1 } 
-  );
-
-  observer.observe(container); 
-
-  return () => {
-    stopAnimation();
-    observer.disconnect();
-  };
+  }, interval);
 }
 
-function initAnimation() {
-  setupIconAnimation('.contacts-button', '.contacts-button__icon');
-  setupIconAnimation('.main__icon-translate', '.lang-switcher__flag');
+function initAnimations() {
+  // Запускаем обе анимации
+  animateIcons('.lang-switcher', '.lang-switcher__flag');
+  animateIcons('.contacts-button', '.contacts-button__icon');
 }
 
+// Упрощаем установку высоты viewport
 function setViewportHeight() {
-  const vh = window.innerHeight * 0.01;
-  document.documentElement.style.setProperty('--vh', `${vh}px`);
+  document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
 }
 
 // Инициализация
-window.addEventListener('DOMContentLoaded', setViewportHeight);
-window.addEventListener('resize', setViewportHeight);
-window.addEventListener('orientationchange', setViewportHeight);
-window.addEventListener('load', setViewportHeight);
-
-
-
-// Запуск инициализации
 document.addEventListener('DOMContentLoaded', () => {
   initContactForm();
   setViewportHeight();
-  initAnimation();
+  initAnimations();
+  
+  // Только один обработчик на resize
+  window.addEventListener('resize', setViewportHeight);
 });
 

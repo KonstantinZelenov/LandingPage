@@ -191,7 +191,7 @@
               <textarea class="form-details__input form-details__input_textarea" id="description" name="description" rows="6"></textarea>
             </li>
           </ul>
-          <button class="prices-form__button" data-i18n="prices_next" type="button">Next</button>
+          <button class="button prices-form__button" data-i18n="prices_next" type="button">Next</button>
         </fieldset>
       </form>
     </div>
@@ -201,7 +201,7 @@
   <div class="popup popup_contacts">
     <div class="popup__content">
       <button class="popup__close-button" aria-label="Close modal" type="button"></button>
-      <form class="contact-form" action="http://localhost:3000/users" method="post">
+      <form class="contact-form">
         <fieldset class="contact-form__fieldset">
           <legend class="contact-form__legend" data-i18n="contact_title">Contact me</legend>
           <ul class="contact-form__list">
@@ -215,6 +215,7 @@
               placeholder="Your name"
               data-i18n-placeholder="contact_name_placeholder" 
               required>
+               <div class="contact-form__error" data-field="name"></div>
             </li>
             <li class="contact-form__field">
               <label class="contact-form__label" for="mail" data-i18n="contact_email">Email:</label>
@@ -226,6 +227,7 @@
               placeholder="example@gmail.com"
               data-i18n-placeholder="contact_email_placeholder"  
               required>
+               <div class="contact-form__error" data-field="mail"></div>
             </li>
             <li class="contact-form__field">
               <label class="contact-form__label" for="lesson_type" data-i18n="contact_lessons">Lessons:</label>
@@ -241,9 +243,10 @@
             <li class="contact-form__field">
               <label class="contact-form__label" for="message" data-i18n="contact_message">Message:</label>
               <textarea class="contact-form__textarea" id="message" name="message"></textarea>
+               <div class="contact-form__error" data-field="message"></div>
             </li>
             <li class="contact-form__field">
-              <button class="contact-form__button" type="submit" data-i18n="contact_submit">Send your message</button>
+              <button class="button contact-form__button" type="submit" data-i18n="contact_submit">Send your message</button>
             </li>
           </ul>
         </fieldset>
@@ -294,6 +297,7 @@
   <script type="module" src="./index.js"></script>
   <script type="module" src="./scripts/radio.js"></script>
   <script type="module" src="./scripts/formHandler.js"></script>
+  <script type="module" src="./scripts/validators.js"></script>
 </body>
 
 </html>

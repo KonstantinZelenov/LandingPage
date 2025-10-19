@@ -33,33 +33,28 @@
   vertical-align: top;
 }
 
-.contact-form__button {
-  margin: 2px;
-  border: 1px solid antiquewhite;
-  border-radius: 2px;
-  padding: 2px 5px;
-  color: inherit;
-  font-family: inherit;
-  font-size: inherit;
-  text-transform: uppercase;
-  background-color: transparent;
+/* Стили для валидации */
+.contact-form__input.error,
+.contact-form__select.error,
+.contact-form__textarea.error {
+  border-color: #ff4444;
+  box-shadow: 0 0 0 2px rgba(255, 68, 68, 0.2);
+  background-color: #fffafa;
 }
 
-.contact-form__button:focus {
-  outline: none;
+.contact-form__input.valid,
+.contact-form__select.valid,
+.contact-form__textarea.valid {
+  border-color: #4CAF50;
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
 }
 
-.contact-form__button:focus-visible {
-  outline: 1px dashed antiquewhite;
-  outline-offset: 1px;
+.contact-form__error {
+  color: #ff4444;
+  font-size: 14px;
+  margin-top: 5px;
+  min-height: 20px;
+  font-weight: 500;
 }
 
-.contact-form__button:hover {
-  color: antiquewhite;
-  background-color: gray;
-}
 
-.contact-form__button:active {
-  color: #000000;
-  
-}
