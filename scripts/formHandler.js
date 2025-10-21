@@ -1,201 +1,129 @@
 import { closePopup } from './modal.js';
-import { validateForm, createRealTimeValidator } from './validators.js';
 
-let realTimeValidate;
+const validationRules = {
+  name: {
+    required: true,
+    minLength: 2,
+    pattern: /^[a-zA-Zа-яА-ЯёЁ\s\-']+$/u
+  },
+  mail: {
+    required: true,
+    pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  },
+  message: {
+    required: true,
+    minLength: 10
+  }
+};
+
+const errorTexts = {
+  name_required: 'Имя обязательно',
+  name_minLength: 'Минимум 2 символа', 
+  name_pattern: 'Только буквы и дефисы',
+  email_required: 'Email обязателен',
+  email_pattern: 'Неверный формат email',
+  message_required: 'Сообщение обязательно',
+  message_minLength: 'Минимум 10 символов'
+};
 
 export function initContactForm() {
-  const contactForm = document.querySelector('.contact-form');
-  
-  if (!contactForm) return;
-  
-  initRealTimeValidation(contactForm);
+  const form = document.querySelector('.contact-form');
+  if (!form) return;
 
-  contactForm.addEventListener('submit', handleContactSubmit);
-}
-
-function initRealTimeValidation(form) {
-  // Создаем валидатор с дебаунсом
-  realTimeValidate = createRealTimeValidator((fieldName, result) => {
-    showFieldError(fieldName, result);
+  form.addEventListener('input', (e) => {
+    if (e.target.name in validationRules) {
+      validateField(e.target);
+    }
   });
-  
-  // Находим поля и вешаем обработчики
-  const nameInput = form.querySelector('#name');
-  const emailInput = form.querySelector('#mail');
-  const messageInput = form.querySelector('#message');
-  
-  if (nameInput) {
-    nameInput.addEventListener('input', () => realTimeValidate('name', nameInput.value));
-    nameInput.addEventListener('blur', () => realTimeValidate('name', nameInput.value));
-  }
-  
-  if (emailInput) {
-    emailInput.addEventListener('input', () => realTimeValidate('email', emailInput.value));
-    emailInput.addEventListener('blur', () => realTimeValidate('email', emailInput.value));
-  }
-  
-  if (messageInput) {
-    messageInput.addEventListener('blur', () => realTimeValidate('message', messageInput.value));
-  }
+
+  form.addEventListener('submit', handleContactSubmit);
 }
 
-function showFieldError(fieldName, validationResult) {
-  const field = document.querySelector(`[name="${fieldName}"]`);
-  const errorElement = document.querySelector(`[data-field="${fieldName}"]`);
+function validateField(field) {
+  const rules = validationRules[field.name];
+  const value = field.value.trim();
+  const errorElement = document.querySelector(`[data-field="${field.name}"]`);
   
-  if (!field || !errorElement) return;
+  if (!errorElement) return true;
   
-  // Очищаем предыдущие стили
-  field.classList.remove('error', 'valid');
+  // Очищаем ошибку
+  field.classList.remove('error');
   errorElement.textContent = '';
   
-  if (validationResult.isValid) {
-    field.classList.add('valid');
-  } else {
-    field.classList.add('error');
-    // Показываем первую ошибку
-    const firstError = validationResult.errors[0];
-    errorElement.textContent = getTranslatedError(firstError);
+  // Проверяем правила
+  if (rules.required && !value) {
+    showError(field, errorElement, `${field.name}_required`);
+    return false;
   }
+  
+  if (rules.minLength && value.length < rules.minLength) {
+    showError(field, errorElement, `${field.name}_minLength`);
+    return false;
+  }
+  
+  if (rules.pattern && !rules.pattern.test(value)) {
+    showError(field, errorElement, `${field.name}_pattern`);
+    return false;
+  }
+  
+  return true;
 }
 
-function showAllErrors(formErrors) {
-  // Показываем все ошибки при отправке
-  Object.keys(formErrors).forEach(fieldName => {
-    const validationResult = {
-      isValid: false,
-      errors: formErrors[fieldName]
-    };
-    showFieldError(fieldName, validationResult);
+function showError(field, errorElement, errorKey) {
+  field.classList.add('error');
+  errorElement.textContent = errorTexts[errorKey] || 'Ошибка';
+}
+
+function validateForm(form) {
+  let isValid = true;
+  
+  // Проверяем все поля
+  Object.keys(validationRules).forEach(fieldName => {
+    const field = form.querySelector(`[name="${fieldName}"]`);
+    if (field && !validateField(field)) {
+      isValid = false;
+    }
   });
   
-  // Скроллим к первой ошибке
-  const firstErrorField = document.querySelector('.contact-form__input.error');
-  if (firstErrorField) {
-    firstErrorField.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    firstErrorField.focus();
-  }
-}
-
-function getTranslatedError(errorKey) {
-  // Здесь будет связь с твоей системой перевода
-  // Пока возвращаем русские тексты
-  const errorTexts = {
-    'name_required': 'Имя обязательно для заполнения',
-    'name_minLength': 'Имя должно содержать минимум 2 символа',
-    'name_maxLength': 'Имя не должно превышать 50 символов',
-    'name_pattern': 'Имя может содержать только буквы, пробелы и дефисы',
-    'name_validate': 'Введите реальное имя',
-    
-    'email_required': 'Email обязателен для заполнения',
-    'email_pattern': 'Введите корректный email адрес',
-    'email_validate': 'Проверьте правильность email адреса',
-    
-    'lesson_type_required': 'Выберите тип оружия для тренировки',
-    
-    'message_required': 'Сообщение обязательно для заполнения',
-    'message_minLength': 'Сообщение должно содержать минимум 10 символов',
-    'message_maxLength': 'Сообщение не должно превышать 1000 символов',
-    'message_validate': 'Сообщение содержит недопустимые слова или символы'
-  };
-  
-  return errorTexts[errorKey] || 'Ошибка валидации';
-}
-
-function getFormData(form) {
-  const formData = new FormData(form);
-  return {
-    name: formData.get('name'),
-    mail: formData.get('mail'),
-    lesson_type: formData.get('lesson_type'),
-    message: formData.get('message')
-  };
+  return isValid;
 }
 
 async function handleContactSubmit(event) {
   event.preventDefault();
   
-  // Получаем данные формы
-  const formData = getFormData(event.target);
-  
-  // ВАЛИДАЦИЯ: НОВЫЙ КОД
-  const validation = validateForm(formData);
-  
-  if (!validation.isValid) {
-    showAllErrors(validation.errors);
-    return; // Останавливаем отправку если есть ошибки
+  if (!validateForm(event.target)) {
+    // Показываем первую ошибку
+    const firstError = event.target.querySelector('.error');
+    if (firstError) {
+      firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      firstError.focus();
+    }
+    return;
   }
-  // КОНЕЦ ВАЛИДАЦИИ
   
-  // Получаем данные из sessionStorage
+  const formData = new FormData(event.target);
   const pricingData = JSON.parse(sessionStorage.getItem('pricingData') || '{}');
-  
-  // Объединяем данные в плоскую структуру
-  const submissionData = {
-    ...formData,
-    ...pricingData
-  };
   
   try {
     const baseURL = window.location.origin;
     const response = await fetch(`${baseURL}/api/send-form`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(submissionData)
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...Object.fromEntries(formData), ...pricingData })
     });
     
     if (response.ok) {
-      // Успешная отправка
       alert('Message sent successfully!');
-      
-      // Очищаем sessionStorage и форму
       sessionStorage.removeItem('pricingData');
       event.target.reset();
       
-      // Закрываем попап
       const popup = event.target.closest('.popup');
-      if (popup) {
-        closePopup(popup);
-      }
+      if (popup) closePopup(popup);
     } else {
-      throw new Error('Server response was not ok');
+      throw new Error('Server error');
     }
   } catch (error) {
-    console.error('Error submitting form:', error);
-    alert('There was an error sending your message. Please try again.');
+    console.error('Error:', error);
+    alert('Error sending message. Please try again.');
   }
 }
-
-
-
-/*
-2. Loading states:
-
-javascript
-// В handleContactSubmit
-const submitBtn = event.target.querySelector('button[type="submit"]');
-const originalText = submitBtn.textContent;
-submitBtn.disabled = true;
-submitBtn.textContent = 'Sending...';
-
-// В finally или после response
-submitBtn.disabled = false;
-submitBtn.textContent = originalText;
-3. Вместо alert():
-
-css
- Добавить стили для уведомлений 
-.notification {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  padding: 15px;
-  border-radius: 5px;
-  z-index: 10000;
-}
-.notification.success { background: green; }
-.notification.error { background: red; } */
-
-

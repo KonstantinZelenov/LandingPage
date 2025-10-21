@@ -62,23 +62,19 @@ function animateIcons(containerSelector, iconSelector, interval = 3500) {
 }
 
 function initAnimations() {
-  // Запускаем обе анимации
   animateIcons('.lang-switcher', '.lang-switcher__flag');
   animateIcons('.contacts-button', '.contacts-button__icon');
 }
 
-// Упрощаем установку высоты viewport
 function setViewportHeight() {
   document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
 }
 
-// Инициализация
 document.addEventListener('DOMContentLoaded', () => {
   initContactForm();
   setViewportHeight();
   initAnimations();
   
-  // Только один обработчик на resize
   window.addEventListener('resize', setViewportHeight);
 });
 

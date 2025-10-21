@@ -48,8 +48,38 @@
 
 .form-details__input_textarea {
   line-height: 1.4;
-  white-space: pre-wrap; /* сохранять переносы строк */
-  word-wrap: break-word; /* переносить длинные слова */
+  white-space: pre-wrap; 
+  word-wrap: break-word; 
+}
+
+.training-types__label {
+  position: relative;
+  cursor: pointer;
+}
+
+.training-types__label::before {
+  content: '';
+  position: absolute;
+  left: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-image: url(../images/cross-swords.png);
+  background-size: cover;
+  background-position: center;
+  transition: all 0.3s ease;
+}
+
+.training-types__radio:checked + .training-types__label::before {
+  opacity: 1;
+  filter: none;
+}
+
+.training-types__radio:not(:checked) + .training-types__label::before {
+  opacity: 0.6;
+  filter: blur(1px) brightness(0.8);
 }
 
 

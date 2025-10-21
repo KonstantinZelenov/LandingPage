@@ -21,22 +21,93 @@ const trainingData = {
   }
 };
 
+const fields = {
+  duration: document.getElementById('duration'),
+  prices: document.getElementById('prices'),
+  description: document.getElementById('description')
+};
+
+function getTrainingData(type) {
+  return trainingData[type] || { duration: '', price: '', description: '' };
+}
+
 function handleTrainingTypeChange(event) {
-  const field1 = document.getElementById('duration');
-  const field2 = document.getElementById('prices');
-  const field3 = document.getElementById('description');
+  const data = getTrainingData(event.target.value);
+  
+  fields.duration.value = data.duration;
+  fields.prices.value = data.price;
+  fields.description.value = data.description;
+}
+
+export function savePricingData() {
+  const trainingType = document.querySelector('input[name="trainingType"]:checked');
+  if (!trainingType) return false;
+  
+  const pricingData = {
+    trainingType: trainingType.value,
+    ...Object.fromEntries(
+      Object.entries(fields).map(([key, field]) => [key, field.value])
+    )
+  };
+  
+  sessionStorage.setItem('pricingData', JSON.stringify(pricingData));
+  return true;
+}
+
+function initPricingForm() {
+  document.querySelectorAll('.training-types__radio').forEach(radio => {
+    radio.addEventListener('change', handleTrainingTypeChange);
+  });
+  
+  // Автовыбор первого варианта
+  const firstRadio = document.querySelector('.training-types__radio');
+  if (firstRadio) {
+    firstRadio.checked = true;
+    firstRadio.dispatchEvent(new Event('change'));
+  }
+}
+
+document.addEventListener('DOMContentLoaded', initPricingForm);
+
+/*const trainingData = {
+  personal: {
+    duration: '1 hour',
+    price: '50 usd',
+    description: 'Hall rent is paid separately. In an hour we manage to warm up, learn fencing elements and basic acrobatic elements, and cool down.'
+  },
+  split: {
+    duration: '1.5 hour', 
+    price: '60 usd',
+    description: 'In an hour we manage to warm up, learn fencing elements, and cool down.'
+  },
+  group: {
+    duration: '2 hour',
+    price: '100 usd',
+    description: 'Hall rental is included in the price. In 2 hours we manage to warm up, learn fencing elements, and cool down.'
+  },
+  video: {
+    duration: '3 hour',
+    price: '120 usd',
+    description: 'Rent a location or transfer to a location separately. We are making a movie with you in the title role. The idea and costumes are discussed in advance.'
+  }
+};
+
+function handleTrainingTypeChange(event) {
+  const durationField = document.getElementById('duration');
+  const pricesField = document.getElementById('prices');
+  const descriptionField = document.getElementById('description');
   
   const selectedValue = event.target.value;
   
-  field1.value = '';
-  field2.value = '';
-  field3.value = '';
+  durationField.value = '';
+  pricesField.value = '';
+  descriptionField.value = '';
   
   if (event.target.checked && trainingData[selectedValue]) {
     const data = trainingData[selectedValue];
-    field1.value = data.duration;
-    field2.value = data.price;
-    field3.value = data.description;
+    durationField.value = data.duration;
+    pricesField.value = data.price;
+    descriptionField.value = data.description;
   }
 }
 
@@ -77,7 +148,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('prices').value = trainingData.personal.price;
     document.getElementById('description').value = trainingData.personal.description;
   }
-});
+}); */
 
 
 
