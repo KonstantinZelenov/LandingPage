@@ -15,6 +15,7 @@
 
 .prices-form__legend {
   font-size: var(--header-font-size, 30px);
+  font-family: var(--main-font-family);
 }
 
 .training-types {

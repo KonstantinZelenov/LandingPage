@@ -8,6 +8,6 @@
 .popup__paragraph {
   font-weight: var(--small-font-weight);
   font-size: var(--main-font-size);
-  letter-spacing: 3px;
+  letter-spacing: 0.5px;
   text-align: justify;
 }

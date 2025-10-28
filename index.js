@@ -64,6 +64,7 @@ function animateIcons(containerSelector, iconSelector, interval = 3500) {
 function initAnimations() {
   animateIcons('.lang-switcher', '.lang-switcher__flag');
   animateIcons('.contacts-button', '.contacts-button__icon');
+  animateIcons('.theme-switcher', '.theme-switcher__icon');
 }
 
 function setViewportHeight() {
