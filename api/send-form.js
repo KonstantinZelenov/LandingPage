@@ -23,8 +23,7 @@ export default async function handler(request, response) {
     
     const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
     const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
-
-    // остальной код без изменений...
+    
     const message = `
 🎯 НОВАЯ ЗАЯВКА С ЛЕНДИНГА!
 👤 Имя: ${formData.name}

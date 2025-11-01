@@ -18,7 +18,7 @@
 
 /* Светлая тема как класс */
 .theme-light {
-  --main-color: #333;
+  --main-color: white;
   --background-color: #fff;
 }
 
@@ -41,10 +41,6 @@
 .theme-light .main__header {
   -webkit-text-stroke: 2px white;
   text-stroke: 2px white;
-}
-
-.theme-light .background-image-light {
-  display: block;
 }
 
 /* Иконки темы */
