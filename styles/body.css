@@ -14,7 +14,7 @@ body {
   position: relative;
 }
 
-.content-wrapper {
+main {
   position: absolute;
   inset: 0;
 }

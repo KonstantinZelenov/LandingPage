@@ -17,101 +17,106 @@
 </head>
 
 <body>
-  <div class="content-wrapper">
-    <main>
-      <section class="main">
-        <picture class="main__picture">
-          <!-- WebP с ориентацией -->
-          <source media="(orientation: portrait)" type="image/webp" srcset="
+  <main>
+    <section class="main">
+      <picture class="main__picture">
+        <!-- WebP с ориентацией -->
+        <source media="(orientation: portrait)" type="image/webp" srcset="
       ./images/background-images/about-me-black-portrait-720-1280.webp 720w,
       ./images/background-images/about-me-black-portrait-1080-1920.webp 1080w,
       ./images/background-images/about-me-black-portrait-1440-2560.webp 1440w
-    " sizes="100vw">
-          <source media="(orientation: landscape)" type="image/webp" srcset="
+     " sizes="100vw">
+        <source media="(orientation: landscape)" type="image/webp" srcset="
       ./images/background-images/about-me-black-landscape-800-450.webp 800w,
       ./images/background-images/about-me-black-landscape-1280-720.webp 1280w,
       ./images/background-images/about-me-black-landscape-1920-1080.webp 1920w,
       ./images/background-images/about-me-black-landscape-2560-1440.webp 2560w
-    " sizes="100vw">
+     " sizes="100vw">
 
-          <!-- JPEG фолбэк с ориентацией -->
-          <source media="(orientation: portrait)" type="image/jpeg" srcset="
+        <!-- JPEG фолбэк с ориентацией -->
+        <source media="(orientation: portrait)" type="image/jpeg" srcset="
       ./images/background-images/about-me-black-portrait-720-1280.jpg 720w,
       ./images/background-images/about-me-black-portrait-1080-1920.jpg 1080w,
       ./images/background-images/about-me-black-portrait-1440-2560.jpg 1440w
-    " sizes="100vw">
-          <img class="main__image" src="./images/background-images/about-me-black-landscape-1920-1080.jpg" srcset="
+     " sizes="100vw">
+        <img class="main__image" src="./images/background-images/about-me-black-landscape-1920-1080.jpg" srcset="
       ./images/background-images/about-me-black-landscape-800-450.jpg 800w,
       ./images/background-images/about-me-black-landscape-1280-720.jpg 1280w,
       ./images/background-images/about-me-black-landscape-1920-1080.jpg 1920w,
       ./images/background-images/about-me-black-landscape-2560-1440.jpg 2560w
-    " sizes="100vw"
-            alt="A man with a staff in a shaman costume stands in the dark and stretches his hand toward a beam of light."
-            loading="eager" decoding="async">
-        </picture>
+     " sizes="100vw"
+          alt="A man with a staff in a shaman costume stands in the dark and stretches his hand toward a beam of light."
+          loading="eager" decoding="async">
+      </picture>
 
-        <h1 class="main__header" data-i18n="name">Konstantin Zelenov</h1>
-        <p class="main__description" data-i18n="description">Fencing coach, stuntman, athlete</p>
-        <ul class="main__icons">
-          <li class="main__icon">
-            <button class="menu-button" type="button">
-              <img class="menu-button__icon" src="./images/icon-hamburger-menu.png" alt="Hamburger menu icon">
-            </button>
-          </li>
-          <li class="main__icon main__icon-translate">
-            <button class="lang-switcher" type="button">
-              <img class="lang-switcher__flag active" src="./images/rf-flag.svg"
-                alt="Russian Federation flag translate icon">
-              <img class="lang-switcher__flag" src="./images/gb-flag.svg" alt="Great Britain flag translate icon">
-            </button>
-          <li class="main__icon main__icon-theme">
-            <button class="theme-switcher" type="button" aria-label="Switch theme">
-              <img class="theme-switcher__icon active" src="./images/theme-icon-dark.png"
-                alt="The moon image">
-              <img class="theme-switcher__icon" src="./images/theme-icon-light.png" alt="The sun image">
-            </button>
-          </li>
-        </ul>
-      </section>
-    </main>
-  </div>
-
-
-  <div class="popup popup_main-menu">
-    <div class="popup__content">
-      <button class="popup__close-button" aria-label="Close modal" type="button"></button>
-      <ul class="popup__list">
-        <li class="popup__item">
-          <button class="popup__button" type="button" data-popup="about-me" data-i18n="about">About me</button>
+      <h1 class="main__header" data-i18n="name">Konstantin Zelenov</h1>
+      <p class="main__description" data-i18n="description">Fencing coach, stuntman, athlete</p>
+      <ul class="main__icons">
+        <li class="main__icon">
+          <button class="menu-button" type="button">
+            <img class="menu-button__icon" src="./images/icon-hamburger-menu.png" alt="Hamburger menu icon">
+          </button>
         </li>
-        <li class="popup__item">
-          <button class="popup__button" type="button" data-popup="about-projects" data-i18n="projects">Projects</button>
-        </li>
-        <li class="popup__item">
-          <button class="popup__button" type="button" data-popup="about-school" data-i18n="school">School</button>
-        </li>
-        <li class="popup__item">
-          <button class="popup__button" type="button" data-popup="price" data-i18n="prices">Prices</button>
-        </li>
-        <li class="popup__item">
-          <button class="contacts-button" type="button" data-popup="contacts">
-            <img class="contacts-button__icon active" src="./images/contacts-mail.png" alt="Email icon">
-            <img class="contacts-button__icon" src="./images/contacts-phone.png" alt="Phone icon">
-            <img class="contacts-button__icon" src="./images/contacts-location.png" alt="Location icon">
+        <li class="main__icon main__icon-translate">
+          <button class="lang-switcher" type="button">
+            <img class="lang-switcher__flag active" src="./images/rf-flag.svg"
+              alt="Russian Federation flag translate icon">
+            <img class="lang-switcher__flag" src="./images/gb-flag.svg" alt="Great Britain flag translate icon">
+          </button>
+        <li class="main__icon main__icon-theme">
+          <button class="theme-switcher" type="button" aria-label="Switch theme">
+            <img class="theme-switcher__icon active" src="./images/theme-icon-dark.png" alt="The moon image">
+            <img class="theme-switcher__icon" src="./images/theme-icon-light.png" alt="The sun image">
           </button>
         </li>
       </ul>
+    </section>
+  </main>
+
+  <div class="popup popup_main-menu">
+    <div class="popup__content">
+        <button class="popup__close-button" aria-label="Close modal" type="button"></button>
+
+        <div class="popup__wheel-container">
+            <ul class="popup__list popup__wheel">
+                <li class="popup__item popup__wheel-item">
+                    <button class="popup__button" type="button" data-popup="about-me" data-i18n="about">About me</button>
+                </li>
+                <li class="popup__item popup__wheel-item">
+                    <button class="popup__button" type="button" data-popup="about-projects" data-i18n="projects">Projects</button>
+                </li>
+                <li class="popup__item popup__wheel-item">
+                    <button class="popup__button" type="button" data-popup="about-school" data-i18n="school">School</button>
+                </li>
+                <li class="popup__item popup__wheel-item">
+                    <button class="popup__button" type="button" data-popup="price" data-i18n="prices">Prices</button>
+                </li>
+                <li class="popup__item popup__wheel-item">
+                    <button class="contacts-button" type="button" data-popup="contacts">
+                        <img class="contacts-button__icon active" src="./images/contacts-mail.png" alt="Email icon">
+                        <img class="contacts-button__icon" src="./images/contacts-phone.png" alt="Phone icon">
+                        <img class="contacts-button__icon" src="./images/contacts-location.png" alt="Location icon">
+                    </button>
+                </li>
+            </ul>
+        </div>
     </div>
-  </div>
+</div>
 
 
   <div class="popup popup_about-me">
     <div class="popup__content">
       <button class="popup__close-button" aria-label="Close modal" type="button"></button>
       <h2 class="popup__title" data-i18n="about_title">About me</h2>
-      <p class="popup__paragraph" data-i18n="about_text1">Hello, my name is Konstantin Zelenov and I am happy to share my story with you. I devoted the last 20 years of my life to fencing, honing my skills as an athlete, stuntman, theater and film actor.</p>
-      <p class="popup__paragraph" data-i18n="about_text2">I have twice become world champion in artistic fencing. Several times I was the champion of Russia and a multiple winner of competitions in artistic fencing.</p>
-      <p class="popup__paragraph" data-i18n="about_text3">Whether you dream of climbing the championship podium or just want to experience the thrill of this ancient art form. I am here to help you every step of the way. Contact me today to start an exciting adventure in the world of swordsmanship. Lets create something extraordinary together!</p>
+      <p class="popup__paragraph" data-i18n="about_text1">Hello, my name is Konstantin Zelenov and I am happy to share
+        my story with you. I devoted the last 20 years of my life to fencing, honing my skills as an athlete, stuntman,
+        theater and film actor.</p>
+      <p class="popup__paragraph" data-i18n="about_text2">I have twice become world champion in artistic fencing.
+        Several times I was the champion of Russia and a multiple winner of competitions in artistic fencing.</p>
+      <p class="popup__paragraph" data-i18n="about_text3">Whether you dream of climbing the championship podium or just
+        want to experience the thrill of this ancient art form. I am here to help you every step of the way. Contact me
+        today to start an exciting adventure in the world of swordsmanship. Lets create something extraordinary
+        together!</p>
     </div>
   </div>
 
@@ -119,19 +124,19 @@
   <div class="popup popup_projects">
     <div class="popup__content">
       <button class="popup__close-button" aria-label="Close modal" type="button"></button>
-      <h2 class="popup__title" data-i18n="projects_title">Lorem ipsum</h2>
+      <h2 class="popup__title" data-i18n="projects_title">My Projects</h2>
       <ul class="projects-list">
         <li class="projects-list__item">
-          <p class="projects-list__description" data-i18n="projects_text1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          <p class="projects-list__description" data-i18n="projects_text1">Choreographed fight scenes for theater and
+            film productions</p>
         </li>
         <li class="projects-list__item">
-          <p class="projects-list__description" data-i18n="projects_text2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          <p class="projects-list__description" data-i18n="projects_text2">Safety-focused fight scene direction for
+            action movies</p>
         </li>
         <li class="projects-list__item">
-          <p class="projects-list__description" data-i18n="projects_text3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        </li>
-        <li class="projects-list__item">
-          <p class="projects-list__description" data-i18n="projects_text3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          <p class="projects-list__description" data-i18n="projects_text3">Reconstruction of medieval and renaissance
+            combat techniques</p>
         </li>
       </ul>
     </div>
@@ -141,23 +146,22 @@
   <div class="popup popup_about-school">
     <div class="popup__content">
       <button class="popup__close-button" aria-label="Close modal" type="button"></button>
-        <div class="video-content">
-          <div class="video-content__container">
-            <iframe 
-              class="video-content__iframe"
-              src="https://www.youtube.com/embed/hUbnziD6ZYU?start=3&mute=true"
-              title="YouTube video player" 
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              loading="lazy"
-              allowfullscreen>
-            </iframe>
-          </div>
-          <div class="video-content__description">
-            <h2 class="video-content__title" data-i18n="school_title">About School</h2>
-            <p class="video-content__text" data-i18n="school_text">Welcome to our fencing school. Our fencing lessons will not only teach you the basics of technique such as attack, defense and movement, but will also help you develop flexibility, coordination and strength. Each student will receive attention and support in order to achieve maximum results in their development as a swordsman.</p>
-          </div>
+      <div class="video-content">
+        <div class="video-content__container">
+          <iframe class="video-content__iframe" src="https://www.youtube.com/embed/hUbnziD6ZYU?start=3&mute=true"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            loading="lazy" allowfullscreen>
+          </iframe>
         </div>
+        <div class="video-content__description">
+          <h2 class="video-content__title" data-i18n="school_title">About School</h2>
+          <p class="video-content__text" data-i18n="school_text">Welcome to our fencing school. Our fencing lessons will
+            not only teach you the basics of technique such as attack, defense and movement, but will also help you
+            develop flexibility, coordination and strength. Each student will receive attention and support in order to
+            achieve maximum results in their development as a swordsman.</p>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -170,19 +174,24 @@
           <legend class="prices-form__legend" data-i18n="prices_title">Price list</legend>
           <ul class="training-types">
             <li class="training-types__item">
-              <input class="training-types__radio visually-hidden" type="radio" id="personal" name="trainingType" value="personal">
-              <label class="training-types__label" for="personal" data-i18n="training_personal">Personal training</label>
+              <input class="training-types__radio visually-hidden" type="radio" id="personal" name="trainingType"
+                value="personal">
+              <label class="training-types__label" for="personal" data-i18n="training_personal">Personal
+                training</label>
             </li>
             <li class="training-types__item">
-              <input class="training-types__radio visually-hidden" type="radio" id="split" name="trainingType" value="split">
+              <input class="training-types__radio visually-hidden" type="radio" id="split" name="trainingType"
+                value="split">
               <label class="training-types__label" for="split" data-i18n="training_split">Split training</label>
             </li>
             <li class="training-types__item">
-              <input class="training-types__radio visually-hidden" type="radio" id="group" name="trainingType" value="group">
+              <input class="training-types__radio visually-hidden" type="radio" id="group" name="trainingType"
+                value="group">
               <label class="training-types__label" for="group" data-i18n="training_group">Group training</label>
             </li>
             <li class="training-types__item">
-              <input class="training-types__radio visually-hidden" type="radio" id="video" name="trainingType" value="video">
+              <input class="training-types__radio visually-hidden" type="radio" id="video" name="trainingType"
+                value="video">
               <label class="training-types__label" for="video" data-i18n="making_video">Shooting video</label>
             </li>
           </ul>
@@ -197,7 +206,8 @@
             </li>
             <li class="form-details__item">
               <label class="form-details__label" for="description" data-i18n="prices_description">Description:</label>
-              <textarea class="form-details__input form-details__input_textarea" id="description" name="description" rows="6"></textarea>
+              <textarea class="form-details__input form-details__input_textarea" id="description" name="description"
+                rows="6"></textarea>
             </li>
           </ul>
           <button class="button prices-form__button" data-i18n="prices_next" type="button">Next</button>
@@ -216,27 +226,15 @@
           <ul class="contact-form__list">
             <li class="contact-form__field">
               <label class="contact-form__label" for="name" data-i18n="contact_name">Name:</label>
-              <input 
-              class="contact-form__input" 
-              type="text" 
-              id="name" 
-              name="name" 
-              placeholder="Your name"
-              data-i18n-placeholder="contact_name_placeholder" 
-              required>
-               <div class="contact-form__error" data-field="name"></div>
+              <input class="contact-form__input" type="text" id="name" name="name" placeholder="Your name"
+                data-i18n-placeholder="contact_name_placeholder" required>
+              <div class="contact-form__error" data-field="name"></div>
             </li>
             <li class="contact-form__field">
               <label class="contact-form__label" for="mail" data-i18n="contact_email">Email:</label>
-              <input 
-              class="contact-form__input" 
-              type="email" 
-              id="mail" 
-              name="mail" 
-              placeholder="example@gmail.com"
-              data-i18n-placeholder="contact_email_placeholder"  
-              required>
-               <div class="contact-form__error" data-field="mail"></div>
+              <input class="contact-form__input" type="email" id="mail" name="mail" placeholder="example@gmail.com"
+                data-i18n-placeholder="contact_email_placeholder" required>
+              <div class="contact-form__error" data-field="mail"></div>
             </li>
             <li class="contact-form__field">
               <label class="contact-form__label" for="lesson_type" data-i18n="contact_lessons">Lessons:</label>
@@ -252,10 +250,11 @@
             <li class="contact-form__field">
               <label class="contact-form__label" for="message" data-i18n="contact_message">Message:</label>
               <textarea class="contact-form__textarea" id="message" name="message"></textarea>
-               <div class="contact-form__error" data-field="message"></div>
+              <div class="contact-form__error" data-field="message"></div>
             </li>
             <li class="contact-form__field">
-              <button class="button contact-form__button" type="submit" data-i18n="contact_submit">Send your message</button>
+              <button class="button contact-form__button" type="submit" data-i18n="contact_submit">Send your
+                message</button>
             </li>
           </ul>
         </fieldset>
@@ -272,21 +271,25 @@
         <hr class="contacts-nav__divider">
         <ul class="contacts-nav__list">
           <li class="contacts-nav__item">
-            <a class="contacts-nav__link" href="https://www.instagram.com/konstantinartfencing/" target="_blank" data-i18n="contacts_instagram">Instagram</a>
+            <a class="contacts-nav__link" href="https://www.instagram.com/konstantinartfencing/" target="_blank"
+              data-i18n="contacts_instagram">Instagram</a>
             <p class="contacts-nav__description" data-i18n="contacts_instagram_desc">Personal blog</p>
           </li>
           <li class="contacts-nav__item">
-            <a class="contacts-nav__link" href="https://vk.com/viganorth" target="_blank"  data-i18n="contacts_vk">VKontakte</a>
+            <a class="contacts-nav__link" href="https://vk.com/viganorth" target="_blank"
+              data-i18n="contacts_vk">VKontakte</a>
             <p class="contacts-nav__description" data-i18n="contacts_vk_desc">More photos in albums</p>
           </li>
           <li class="contacts-nav__item">
-            <a class="contacts-nav__link" href="https://t.me/KonstantinRehabilitation" target="_blank" data-i18n="contacts_telegram">Telegram</a>
+            <a class="contacts-nav__link" href="https://t.me/KonstantinRehabilitation" target="_blank"
+              data-i18n="contacts_telegram">Telegram</a>
             <p class="contacts-nav__description" data-i18n="contacts_telegram_desc">Write me</p>
           </li>
         </ul>
         <ul class="social-icons">
           <li class="social-icons__item">
-            <a class="social-icons__link" href="https://www.instagram.com/konstantinartfencing/" target="_blank" aria-label="Instagram">
+            <a class="social-icons__link" href="https://www.instagram.com/konstantinartfencing/" target="_blank"
+              aria-label="Instagram">
               <img class="social-icons__image" src="./images/insta.svg" alt="Instagram icon">
             </a>
           </li>
