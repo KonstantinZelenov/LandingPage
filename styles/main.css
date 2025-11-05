@@ -10,6 +10,11 @@
   width: 100%;
 }
 
+main {
+  position: absolute;
+  inset: 0;
+}
+
 .main__header {
   font-weight: var(--small-font-weight);
   text-align: center;
