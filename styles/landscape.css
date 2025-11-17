@@ -60,7 +60,7 @@
 
   .main__header {
     font-size: clamp(3.7rem, 3rem + 2vw, 8rem);
-    letter-spacing: clamp(0.75rem, 0.5rem + 0.5vw, 1.5rem);
+    letter-spacing: clamp(0.5rem, 0.5rem + 0.5vw, 1rem);
   }
 
   .main__description {

@@ -1,35 +1,15 @@
 body {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  min-block-size: 100vh;
+  min-block-size: 100dvh;
+  padding: var(--sat) var(--sar) var(--sab) var(--sal);
   color: var(--main-color);
   background-color: var(--background-color);
   min-inline-size: 300px;
   inline-size: 100%;
-  min-height: 100vh;
-  min-height: 100dvh;
-  padding: var(--sat) var(--sar) var(--sab) var(--sal);
-  height: 100%;
-  position: relative;
+  justify-content: center;
 }
 
-.body_no-scroll {
-  overflow: hidden;
-  position: fixed;
-  inline-size: 100%;
-  block-size: 100%;
-}
-
-.body_no-scroll::after {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 99; /* Выше всего контента но ниже попапов */
-  pointer-events: auto;
-  background-color: black;
-}
 

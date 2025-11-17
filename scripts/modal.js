@@ -2,7 +2,6 @@ export function openPopup(popup) {
   if (!popup) return; 
   
   popup.classList.add('popup_is-opened');
-  document.body.classList.add('body_no-scroll');
  
    const mainElement = document.querySelector('main');
   if (mainElement) {
@@ -33,7 +32,6 @@ export function closePopup(popup) {
   if (!popup) return;
   
   popup.classList.remove('popup_is-opened');
-  document.body.classList.remove('body_no-scroll');
 
   const mainElement = document.querySelector('main');
   if (mainElement) {

@@ -1,42 +1,38 @@
 .main {
   position: relative;
-  display: flex;
-  flex-direction: column;
+  inline-size: 100%;
+  flex: 1;
   transition: all 0.3s ease;
-  block-size: 100vh;
-  block-size: 100dvh; 
-  inline-size: 100vw;
-  inline-size: 100dvw;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.main-blur {
+  filter: blur(10px);
+  transition: filter 0.3s ease;
+  transform: translateZ(0);
+  will-change: filter;
+  pointer-events: none;
 }
 
 .main__header {
   font-family: 'Kaushan';
-  font-weight: var(--small-font-weight);
-  text-align: center;
-  text-transform: uppercase;
-  word-break: keep-all;
-  transition: all 0.3s ease;
 }
 
 .main__description {
   font-family: 'Witcher';
-  text-align: center;
-  text-transform: uppercase;
-  transition: all 0.3s ease;
 }
 
 .main__picture {
     position: absolute;
     inset: 0;
     z-index: -1;
-    overflow: hidden;
 }
 
 .main__image {
-    width: 100%;
-    height: auto;
-    object-fit: contain; 
-    object-position: center top;
+    block-size: 100%;
+    object-fit: cover; 
+    object-position: center;
 }
 
 .main__icons {

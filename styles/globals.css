@@ -65,15 +65,13 @@ select {
 }
 
 img {
-  width: 100%;
-  height: auto;
+  inline-size: 100%;
   display: block;
 }
 
 video,
 iframe {
-  max-width: 100%;
-  height: auto;
+  inline-size: 100%;
   aspect-ratio: 16 / 9; 
 }
 

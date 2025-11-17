@@ -1,4 +1,4 @@
-class ThemeSwitcher {
+export class ThemeSwitcher {
   constructor() {
     this.button = document.querySelector('.theme-switcher');
     this.icons = document.querySelectorAll('.theme-switcher__icon');
@@ -54,8 +54,3 @@ class ThemeSwitcher {
     });
   }
 }
-
-// Инициализация когда DOM загружен
-document.addEventListener('DOMContentLoaded', () => {
-  new ThemeSwitcher();
-});
