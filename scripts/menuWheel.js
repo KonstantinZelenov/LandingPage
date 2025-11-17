@@ -1,4 +1,4 @@
-class SmoothMenuWheel {
+export class SmoothMenuWheel {
     constructor(containerSelector) {
         this.container = document.querySelector(containerSelector);
         this.wheel = this.container.querySelector('.popup__wheel');
@@ -122,8 +122,3 @@ class SmoothMenuWheel {
         });
     }
 }
-
-// Инициализация
-document.addEventListener('DOMContentLoaded', () => {
-    new SmoothMenuWheel('.popup__wheel-container');
-});

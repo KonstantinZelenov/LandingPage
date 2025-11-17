@@ -1,4 +1,4 @@
-@media (orientation: landscape) and (max-width: 1025px) {
+@media (orientation: landscape) and (max-width: 1024px) {
   .main {
     padding: clamp(0.625rem, -1.25rem + 5vw, 1.5rem);
   }
@@ -27,6 +27,11 @@
     font-size: clamp(0.4rem, 0.125rem + 2vw, 1rem);
     letter-spacing: clamp(0.1rem, 0.05rem + 0.35vw, 1.8rem);
   }
+
+  .popup__wheel {
+    max-block-size: 90dvh;
+    max-block-size: 90vh;
+  }
 }
 
 @media (orientation: landscape) and (min-width: 1024px) {
@@ -54,7 +59,7 @@
   }
 
   .main__header {
-    font-size: clamp(4rem, 3rem + 2vw, 8rem);
+    font-size: clamp(3.7rem, 3rem + 2vw, 8rem);
     letter-spacing: clamp(0.75rem, 0.5rem + 0.5vw, 1.5rem);
   }
 

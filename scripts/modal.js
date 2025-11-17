@@ -2,6 +2,12 @@ export function openPopup(popup) {
   if (!popup) return; 
   
   popup.classList.add('popup_is-opened');
+  document.body.classList.add('body_no-scroll');
+ 
+   const mainElement = document.querySelector('main');
+  if (mainElement) {
+    mainElement.classList.add('main-blur');
+  }
   
   const handleEscape = (e) => {
     if (e.key === 'Escape') {
@@ -14,7 +20,7 @@ export function openPopup(popup) {
       closePopup(popup);
     }
   };
-  
+
   // Сохраняем ссылки на функции в свойствах popup
   popup._escapeHandler = handleEscape;
   popup._overlayHandler = handleOverlayClick;
@@ -27,6 +33,12 @@ export function closePopup(popup) {
   if (!popup) return;
   
   popup.classList.remove('popup_is-opened');
+  document.body.classList.remove('body_no-scroll');
+
+  const mainElement = document.querySelector('main');
+  if (mainElement) {
+    mainElement.classList.remove('main-blur');
+  }
   
   // Используем сохраненные функции
   document.removeEventListener('keydown', popup._escapeHandler);

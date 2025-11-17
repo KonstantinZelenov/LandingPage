@@ -1,45 +1,35 @@
 .main {
   position: relative;
+  display: flex;
+  flex-direction: column;
   transition: all 0.3s ease;
   block-size: 100vh;
   block-size: 100dvh; 
   inline-size: 100vw;
   inline-size: 100dvw;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-
-main {
-  position: absolute;
-  inset: 0;
 }
 
 .main__header {
+  font-family: 'Kaushan';
   font-weight: var(--small-font-weight);
   text-align: center;
   text-transform: uppercase;
   word-break: keep-all;
   transition: all 0.3s ease;
-  font-family: 'Kaushan';
 }
 
 .main__description {
+  font-family: 'Witcher';
   text-align: center;
   text-transform: uppercase;
   transition: all 0.3s ease;
-  font-family: 'Witcher';
 }
 
 .main__picture {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: auto;
+    inset: 0;
     z-index: -1;
-    object-fit: contain; 
-    object-position: center top;
+    overflow: hidden;
 }
 
 .main__image {
