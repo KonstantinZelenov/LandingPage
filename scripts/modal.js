@@ -1,4 +1,3 @@
-// modal.js
 let isMenuOpen = false;
 let menuPopup = null;
 

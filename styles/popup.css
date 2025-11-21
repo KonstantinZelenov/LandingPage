@@ -20,7 +20,7 @@
   max-inline-size: 400px;
   max-block-size: 95vh;
   max-block-size: 95dvh;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 .popup_is-opened {
