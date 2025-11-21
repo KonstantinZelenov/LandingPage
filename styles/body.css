@@ -4,6 +4,7 @@ body {
   align-items: center;
   min-block-size: 100vh;
   min-block-size: 100dvh;
+  min-block-size: 100svh;
   padding: var(--sat) var(--sar) var(--sab) var(--sal);
   color: var(--main-color);
   background-color: var(--background-color);
