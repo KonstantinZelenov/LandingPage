@@ -1,5 +1,4 @@
-// scripts/popupManager.js
-import { openPopup, setupCloseButton } from './modal.js';
+import { openPopup, setupCloseButton, closePopup } from './modal.js';
 import { savePricingData } from './radio.js';
 
 const popupConfigs = [
@@ -28,10 +27,12 @@ export function initPopups() {
   // Специальный обработчик для кнопки "Next" в форме цен
   const nextButton = document.querySelector('.prices-form__button');
   const contactsPopup = document.querySelector('.popup_contacts');
+  const pricesPopup = document.querySelector('.popup_prices');
 
   if (nextButton && contactsPopup) {
     nextButton.addEventListener('click', () => {
       if (savePricingData()) {
+        closePopup(pricesPopup);
         openPopup(contactsPopup);
         setupCloseButton(contactsPopup);
       } else {

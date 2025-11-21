@@ -7,14 +7,6 @@
   text-transform: uppercase;
 }
 
-.main-blur {
-  filter: blur(10px);
-  transition: filter 0.3s ease;
-  transform: translateZ(0);
-  will-change: filter;
-  pointer-events: none;
-}
-
 .main__header {
   font-family: 'Kaushan';
 }
@@ -68,6 +60,10 @@
   background-color: transparent;
 }
 
+.theme-switcher {
+  background-color: transparent;
+}
+
 .theme-switcher__icon {
   position: absolute;
   top: 0;
@@ -79,10 +75,3 @@
 .theme-switcher__icon.active {
   opacity: 1;
 }
-
-.theme-switcher {
-  background-color: transparent;
-}
-
-
-

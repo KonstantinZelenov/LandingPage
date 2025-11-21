@@ -68,20 +68,3 @@
   }
 }
 
-/*
-@media (prefers-color-scheme: light) {
-  :root {
-    --main-color: grey;
-  }
-
-  .main {
-    background-image: url('../images/light-theme-portrait.jpg');
-    background-size: cover;
-  }
-
-  .main__header{
-  -webkit-text-stroke: 2px white;
-  text-stroke: 2px white; 
-  }
-}
-}

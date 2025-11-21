@@ -1,12 +1,23 @@
+// modal.js
+let isMenuOpen = false;
+let menuPopup = null;
+
 export function openPopup(popup) {
   if (!popup) return; 
   
-  popup.classList.add('popup_is-opened');
- 
-   const mainElement = document.querySelector('main');
-  if (mainElement) {
-    mainElement.classList.add('main-blur');
+  // Запоминаем если это меню
+  if (popup.classList.contains('popup_main-menu')) {
+    isMenuOpen = true;
+    menuPopup = popup;
+  } else {
+    // Если открывается не меню - закрываем меню
+    if (isMenuOpen && menuPopup) {
+      menuPopup.classList.remove('popup_is-opened');
+      isMenuOpen = false;
+    }
   }
+  
+  popup.classList.add('popup_is-opened');
   
   const handleEscape = (e) => {
     if (e.key === 'Escape') {
@@ -15,12 +26,11 @@ export function openPopup(popup) {
   };
   
   const handleOverlayClick = (e) => {
-    if (e.target === popup) {
-      closePopup(popup);
-    }
-  };
+  if (e.target === popup) {
+    closePopup(popup);
+  }
+};
 
-  // Сохраняем ссылки на функции в свойствах popup
   popup._escapeHandler = handleEscape;
   popup._overlayHandler = handleOverlayClick;
   
@@ -33,24 +43,28 @@ export function closePopup(popup) {
   
   popup.classList.remove('popup_is-opened');
 
-  const mainElement = document.querySelector('main');
-  if (mainElement) {
-    mainElement.classList.remove('main-blur');
-  }
-  
-  // Используем сохраненные функции
+  // Убираем обработчики ДО открытия меню
   document.removeEventListener('keydown', popup._escapeHandler);
   popup.removeEventListener('click', popup._overlayHandler);
   
-  // Очищаем ссылки
   delete popup._escapeHandler;
   delete popup._overlayHandler;
+
+  // Если закрыли не меню - открываем меню обратно
+  if (!popup.classList.contains('popup_main-menu')) {
+    const mainMenu = document.querySelector('.popup_main-menu');
+    if (mainMenu) {
+      // Небольшая задержка чтобы старый попап успел закрыться
+      setTimeout(() => {
+        openPopup(mainMenu);
+      }, 10);
+    }
+  } 
 }
 
 export function setupCloseButton(popup) {
   const closeButton = popup.querySelector('.popup__close-button');
   if (closeButton) {
-    // Удаляем старый обработчик перед добавлением нового (на всякий случай)
     closeButton.replaceWith(closeButton.cloneNode(true));
     const newCloseButton = popup.querySelector('.popup__close-button');
     

@@ -6,24 +6,26 @@
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
-  inline-size: 80vw;
-  inline-size: 80dvw;
+  inset: 0;
+  align-content: center;
+  justify-items: center;
+}
+
+.popup__content {
+  position: relative;
+  padding: 20px;
+  text-align: center;
+  inline-size: 90vw;
+  inline-size: 90dvw;
   max-inline-size: 400px;
-  max-block-size: 90vh;
-  max-block-size: 90dvh;
+  max-block-size: 95vh;
+  max-block-size: 95dvh;
+  overflow: scroll;
 }
 
 .popup_is-opened {
   visibility: visible;
   opacity: 1; 
-}
-
-.popup__content {
-  padding: 20px;
-  text-align: center;
-  inline-size: 100%;
-  max-inline-size: 400px;
-  max-block-size: 100%;
 }
 
 .popup__close-button {
@@ -126,7 +128,6 @@
 
 .popup__wheel-item {
   position: absolute;
-
   top: 50%;
   left: 50%;
   display: flex;
@@ -191,8 +192,3 @@
   filter: blur(3px);
   transform: translateX(-50%) scale(0.6) translateY(200px);
 }
-
-
-
-
-
