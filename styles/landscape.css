@@ -4,7 +4,7 @@
   }
 
   .main__icons {
-    top: clamp(80px, 14.7059px + 14.7059dvw, 160px);
+    /*top: clamp(80px, 14.7059px + 14.7059dvw, 160px);*/
     gap: clamp(0.7rem, 0.0147rem + 2.38dvw, 2rem);
   }
 
@@ -21,6 +21,7 @@
   .main__header {
     font-size: clamp(0.6rem, 0.5rem + 4.5dvw, 8rem);
     letter-spacing: clamp(0.1rem, 0.0625rem + 0.6dvw, 0.75rem);
+    line-height: 1;
   }
 
   .main__description {
