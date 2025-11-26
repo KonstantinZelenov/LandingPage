@@ -119,7 +119,7 @@
 }
 
 .popup__wheel-container {
-   overscroll-behavior: contain;
+   overscroll-behavior-y: contain;
 }
 
 .popup__wheel {
