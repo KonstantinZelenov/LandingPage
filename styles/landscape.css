@@ -52,6 +52,7 @@
 .popup .popup__content {
     max-inline-size: 80vw;
     max-inline-size: 80dvw;
+    max-block-size: 70dvh;
   }
 
 }
