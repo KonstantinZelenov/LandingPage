@@ -118,6 +118,10 @@
   transform: scale(1.2);
 }
 
+.popup__wheel-container {
+   overscroll-behavior: contain;
+}
+
 .popup__wheel {
   position: relative;
   width: 100%;

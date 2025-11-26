@@ -22,9 +22,9 @@
 }
 
 .main__image {
-    block-size: 100%;
-    object-fit: cover; 
-    object-position: center;
+  block-size: 100%;
+  object-fit: cover; 
+  object-position: center;
 }
 
 .main__icons {
