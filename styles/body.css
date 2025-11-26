@@ -12,3 +12,22 @@ body {
   inline-size: 100%;
   justify-content: center;
 }
+
+/* Все кнопки */
+.menu-button,
+.main__icons,
+.popup__button,
+.contacts-button,
+.popup__close-button,
+.button,
+.contacts-nav__link,
+.social-icons__link,
+.training-types__label,
+.contact-form__input,
+.contact-form__select,
+.contact-form__textarea,
+.form-details__input,
+.training-types__radio {
+  -webkit-tap-highlight-color: transparent;
+  tap-highlight-color: transparent;
+}
