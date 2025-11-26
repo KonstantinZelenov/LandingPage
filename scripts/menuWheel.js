@@ -66,6 +66,13 @@ export class SmoothMenuWheel {
             }
         });
 
+        this.container.addEventListener('touchmove', (e) => {
+        // Если скроллим внутри колеса - блокируем поведение по умолчанию
+        if (this.container.scrollTop <= 0 && e.cancelable) {
+            e.preventDefault();
+        }
+    }, { passive: false });
+
         // Клавиатура
         document.addEventListener('keydown', (e) => {
             if (!this.container.closest('.popup_is-opened')) return;
