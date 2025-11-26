@@ -1,3 +1,62 @@
+@media (orientation: landscape) and (max-height: 500px) {
+  .prices-form__fieldset {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .training-types {
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .prices-form__button {
+    align-self: self-end;
+    block-size: 50px;
+  }
+
+  .main {
+    padding-top: 10px;
+  }
+
+  .video-content__container {
+    min-width: 50%;
+  }
+
+  .popup_about-school .popup__content {
+    padding: 0;
+  }
+
+  .popup__content .video-content {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .contact-form__list .contact-form__field {
+  gap: 5px;
+  display: flex;
+  flex-direction: row;
+}
+
+  .contact-form__list {
+    gap: 5px;
+}
+
+.contact-form__list .contact-form__field:first-child {
+    padding-top: 0px;
+}
+
+.contacts-nav .contacts-nav__list {
+  flex-direction: row;
+}
+
+.popup .popup__content {
+    max-inline-size: 80vw;
+    max-inline-size: 80dvw;
+  }
+
+}
+
+
 @media (orientation: landscape) and (max-width: 1024px) {
   .main {
     padding: clamp(0.625rem, -1.25rem + 5dvw, 1.5rem);
@@ -33,6 +92,8 @@
     max-block-size: 90dvh;
     max-block-size: 90vh;
   }
+
+
 }
 
 @media (orientation: landscape) and (min-width: 1024px) {

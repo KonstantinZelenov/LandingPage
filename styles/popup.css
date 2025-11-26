@@ -20,7 +20,6 @@
   max-inline-size: 400px;
   max-block-size: 95vh;
   max-block-size: 95dvh;
-  overflow-y: scroll;
 }
 
 .popup_is-opened {
@@ -191,4 +190,8 @@
   opacity: 0.3;
   filter: blur(3px);
   transform: translateX(-50%) scale(0.6) translateY(200px);
+}
+
+.popup__wheel-item:not(.active) {
+  pointer-events: none;
 }

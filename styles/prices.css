@@ -1,16 +1,5 @@
-.prices-form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 16px;
-}
-
 .prices-form__fieldset {
   border: none;
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
 }
 
 .prices-form__legend {
