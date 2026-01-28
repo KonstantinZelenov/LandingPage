@@ -126,7 +126,7 @@ export default async function handler(request, response) {
 💬 Сообщение: ${sanitizeForTelegram(formData.message)}
 🏋️‍♂️ Тренировка: ${sanitizeForTelegram(formData.trainingType || 'Не указано')}
 ⏱️ Длительность: ${sanitizeForTelegram(formData.duration || 'Не указано')}
-💰 Стоимость: ${sanitizeForTelegram(formData.price || 'Не указано')}
+💰 Стоимость: ${sanitizeForTelegram(formData.prices || 'Не указано')}
 📝 Описание: ${sanitizeForTelegram(formData.description || 'Не указано')}
 🕒 Время: ${new Date().toLocaleString('ru-RU')}`.trim();
 
