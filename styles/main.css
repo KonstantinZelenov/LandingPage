@@ -8,11 +8,11 @@
 }
 
 .main__header {
-  font-family: 'Kaushan';
+  font-family: var(--header-font-family);
 }
 
 .main__description {
-  font-family: 'Witcher';
+  font-family: var(--main-font-family);
 }
 
 .main__picture {
@@ -49,11 +49,11 @@
   top: 0;
   left: 0;
   opacity: 0;
-  transition: opacity 1s linear;
+  animation: iconCycleTwoIcons 7s infinite;
 }
 
-.lang-switcher__flag.active {
-  opacity: 1;
+.lang-switcher__flag:nth-child(2) {
+  animation-delay: 3.5s;
 }
 
 .menu-button {
@@ -69,9 +69,9 @@
   top: 0;
   left: 0;
   opacity: 0;
-  transition: opacity 1s linear;
+  animation: iconCycleTwoIcons 7s infinite;
 }
 
-.theme-switcher__icon.active {
-  opacity: 1;
+.theme-switcher__icon:nth-child(2) {
+  animation-delay: 3.5s;
 }

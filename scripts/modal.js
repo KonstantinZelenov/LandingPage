@@ -1,18 +1,31 @@
-let isMenuOpen = false;
-let menuPopup = null;
+const popupStates = new WeakMap();
+const menuPopupRef = { current: null };
+
+function clearAllErrors(form) {
+  const errorElements = form.querySelectorAll('.contact-form__error');
+  const inputElements = form.querySelectorAll('.contact-form__input, .contact-form__textarea');
+  
+  errorElements.forEach(element => {
+    element.textContent = '';
+  });
+  
+  inputElements.forEach(element => {
+    element.classList.remove('error');
+  });
+}
 
 export function openPopup(popup) {
   if (!popup) return; 
   
-  // Запоминаем если это меню
   if (popup.classList.contains('popup_main-menu')) {
-    isMenuOpen = true;
-    menuPopup = popup;
+    popupStates.set(popup, { isMenuOpen: true });
+    menuPopupRef.current = popup;
   } else {
-    // Если открывается не меню - закрываем меню
-    if (isMenuOpen && menuPopup) {
-      menuPopup.classList.remove('popup_is-opened');
-      isMenuOpen = false;
+    const currentMenu = menuPopupRef.current;
+    if (currentMenu && popupStates.get(currentMenu)?.isMenuOpen) {
+      currentMenu.classList.remove('popup_is-opened');
+      popupStates.delete(currentMenu);
+      menuPopupRef.current = null;
     }
   }
   
@@ -25,10 +38,10 @@ export function openPopup(popup) {
   };
   
   const handleOverlayClick = (e) => {
-  if (e.target === popup) {
-    closePopup(popup);
-  }
-};
+    if (e.target === popup) {
+      closePopup(popup);
+    }
+  };
 
   popup._escapeHandler = handleEscape;
   popup._overlayHandler = handleOverlayClick;
@@ -39,24 +52,33 @@ export function openPopup(popup) {
 
 export function closePopup(popup) {
   if (!popup) return;
+
+  const contactForm = popup.querySelector('.contact-form');
+  if (contactForm) {
+    clearAllErrors(contactForm);
+  }
   
   popup.classList.remove('popup_is-opened');
 
-  // Убираем обработчики ДО открытия меню
   document.removeEventListener('keydown', popup._escapeHandler);
   popup.removeEventListener('click', popup._overlayHandler);
   
   delete popup._escapeHandler;
   delete popup._overlayHandler;
 
-  // Если закрыли не меню - открываем меню обратно
+  if (popup.classList.contains('popup_main-menu')) {
+    popupStates.delete(popup);
+    if (menuPopupRef.current === popup) {
+      menuPopupRef.current = null;
+    }
+  }
+  
   if (!popup.classList.contains('popup_main-menu')) {
     const mainMenu = document.querySelector('.popup_main-menu');
     if (mainMenu) {
-      // Небольшая задержка чтобы старый попап успел закрыться
-      setTimeout(() => {
+      requestAnimationFrame(() => {
         openPopup(mainMenu);
-      }, 10);
+      });
     }
   } 
 }
@@ -64,8 +86,8 @@ export function closePopup(popup) {
 export function setupCloseButton(popup) {
   const closeButton = popup.querySelector('.popup__close-button');
   if (closeButton) {
-    closeButton.replaceWith(closeButton.cloneNode(true));
-    const newCloseButton = popup.querySelector('.popup__close-button');
+    const newCloseButton = closeButton.cloneNode(false);
+    closeButton.replaceWith(newCloseButton);
     
     newCloseButton.addEventListener('click', () => closePopup(popup));
   }

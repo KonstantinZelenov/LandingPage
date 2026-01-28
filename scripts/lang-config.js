@@ -171,7 +171,6 @@ const createTranslationManager = () => {
             const module = modules.find(m => m.container === container);
             if (!module) return;
             
-            // Стандартный перевод текстов
             const elements = module.container.querySelectorAll('[data-i18n]');
             elements.forEach(element => {
                 const key = element.getAttribute('data-i18n');
@@ -180,7 +179,6 @@ const createTranslationManager = () => {
                 }
             });
             
-            // Кастомная обработка если есть
             if (module.processor) {
                 module.processor(module.container, lang, module.translations);
             }

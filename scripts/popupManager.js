@@ -24,20 +24,17 @@ export function initPopups() {
     }
   });
 
-  // Специальный обработчик для кнопки "Next" в форме цен
   const nextButton = document.querySelector('.prices-form__button');
   const contactsPopup = document.querySelector('.popup_contacts');
   const pricesPopup = document.querySelector('.popup_prices');
 
-  if (nextButton && contactsPopup) {
-    nextButton.addEventListener('click', () => {
-      if (savePricingData()) {
-        closePopup(pricesPopup);
-        openPopup(contactsPopup);
-        setupCloseButton(contactsPopup);
-      } else {
-        alert('Please select a training type');
-      }
-    });
+  nextButton.addEventListener('click', () => {
+  if (!savePricingData()) {
+    return;
   }
+  
+  closePopup(pricesPopup);
+  openPopup(contactsPopup);
+  setupCloseButton(contactsPopup);
+});
 }

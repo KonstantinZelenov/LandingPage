@@ -4,27 +4,43 @@ const validationRules = {
   name: {
     required: true,
     minLength: 2,
+    maxLength: 20,
     pattern: /^[a-zA-Zа-яА-ЯёЁ\s\-']+$/u
   },
   mail: {
     required: true,
-    pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
   },
   message: {
     required: true,
-    minLength: 10
+    minLength: 10,
+    maxLength: 1000
   }
 };
 
 const errorTexts = {
   name_required: 'Имя обязательно',
   name_minLength: 'Минимум 2 символа', 
+  name_maxLength: 'Максимум 20 символов',
   name_pattern: 'Только буквы и дефисы',
   email_required: 'Email обязателен',
   email_pattern: 'Неверный формат email',
   message_required: 'Сообщение обязательно',
-  message_minLength: 'Минимум 10 символов'
+  message_minLength: 'Минимум 10 символов',
+  message_maxLength: 'Максимум 1000 символов'
 };
+
+// Функция для очистки входных данных от опасных символов
+function sanitizeInput(text) {
+  if (typeof text !== 'string') return text;
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#x27;')
+    .trim();
+}
 
 export function initContactForm() {
   const form = document.querySelector('.contact-form');
@@ -41,16 +57,16 @@ export function initContactForm() {
 
 function validateField(field) {
   const rules = validationRules[field.name];
+  if (!rules) return true;
+  
   const value = field.value.trim();
   const errorElement = document.querySelector(`[data-field="${field.name}"]`);
   
   if (!errorElement) return true;
   
-  // Очищаем ошибку
   field.classList.remove('error');
   errorElement.textContent = '';
   
-  // Проверяем правила
   if (rules.required && !value) {
     showError(field, errorElement, `${field.name}_required`);
     return false;
@@ -58,6 +74,11 @@ function validateField(field) {
   
   if (rules.minLength && value.length < rules.minLength) {
     showError(field, errorElement, `${field.name}_minLength`);
+    return false;
+  }
+  
+  if (rules.maxLength && value.length > rules.maxLength) {
+    showError(field, errorElement, `${field.name}_maxLength`);
     return false;
   }
   
@@ -77,7 +98,6 @@ function showError(field, errorElement, errorKey) {
 function validateForm(form) {
   let isValid = true;
   
-  // Проверяем все поля
   Object.keys(validationRules).forEach(fieldName => {
     const field = form.querySelector(`[name="${fieldName}"]`);
     if (field && !validateField(field)) {
@@ -92,7 +112,6 @@ async function handleContactSubmit(event) {
   event.preventDefault();
   
   if (!validateForm(event.target)) {
-    // Показываем первую ошибку
     const firstError = event.target.querySelector('.error');
     if (firstError) {
       firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -102,6 +121,12 @@ async function handleContactSubmit(event) {
   }
   
   const formData = new FormData(event.target);
+  const sanitizedData = {};
+  
+  for (let [key, value] of formData.entries()) {
+    sanitizedData[key] = sanitizeInput(value);
+  }
+  
   const pricingData = JSON.parse(sessionStorage.getItem('pricingData') || '{}');
   
   try {
@@ -109,7 +134,7 @@ async function handleContactSubmit(event) {
     const response = await fetch(`${baseURL}/api/send-form`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ...Object.fromEntries(formData), ...pricingData })
+      body: JSON.stringify({ ...sanitizedData, ...pricingData })
     });
     
     if (response.ok) {

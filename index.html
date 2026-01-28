@@ -61,15 +61,15 @@
           </button>
         </li>
         <li class="main__icon main__icon-translate">
-          <button class="lang-switcher" type="button">
-            <img class="lang-switcher__flag active" src="./images/rf-flag.svg"
+          <button class="lang-switcher icon-container" type="button">
+            <img class="lang-switcher__flag animated-icon" src="./images/rf-flag.svg"
               alt="Russian Federation flag translate icon">
-            <img class="lang-switcher__flag" src="./images/gb-flag.svg" alt="Great Britain flag translate icon">
+            <img class="lang-switcher__flag animated-icon" src="./images/gb-flag.svg" alt="Great Britain flag translate icon">
           </button>
         </li>
         <li class="main__icon main__icon-theme">
           <button class="theme-switcher" type="button" aria-label="Switch theme">
-            <img class="theme-switcher__icon active" src="./images/theme-icon-dark.png" alt="The moon image">
+            <img class="theme-switcher__icon" src="./images/theme-icon-dark.png" alt="The moon image">
             <img class="theme-switcher__icon" src="./images/theme-icon-light.png" alt="The sun image">
           </button>
         </li>
@@ -96,7 +96,7 @@
                 </li>
                 <li class="popup__item popup__wheel-item">
                     <button class="contacts-button" type="button" data-popup="contacts">
-                        <img class="contacts-button__icon active" src="./images/contacts-mail.png" alt="Email icon">
+                        <img class="contacts-button__icon" src="./images/contacts-mail.png" alt="Email icon">
                         <img class="contacts-button__icon" src="./images/contacts-phone.png" alt="Phone icon">
                         <img class="contacts-button__icon" src="./images/contacts-location.png" alt="Location icon">
                     </button>
@@ -223,7 +223,7 @@
   <div class="popup popup_contacts">
     <div class="popup__content">
       <button class="popup__close-button" aria-label="Close modal" type="button"></button>
-      <form class="contact-form">
+      <form class="contact-form" novalidate>
         <fieldset class="contact-form__fieldset">
           <legend class="contact-form__legend" data-i18n="contact_title">Contact me</legend>
           <ul class="contact-form__list">
