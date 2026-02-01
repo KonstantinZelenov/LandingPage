@@ -8,7 +8,6 @@ export class ThemeSwitcher {
   }
   
   init() {
-    // Загружаем сохраненную тему или устанавливаем темную по умолчанию
     const savedTheme = localStorage.getItem(this.themeKey);
     if (savedTheme === 'light') {
       this.enableLightTheme();
@@ -16,7 +15,6 @@ export class ThemeSwitcher {
       this.enableDarkTheme();
     }
     
-    // Добавляем обработчик клика
     this.button.addEventListener('click', () => this.toggleTheme());
   }
   

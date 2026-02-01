@@ -65,7 +65,6 @@
   }
 
   .main__icons {
-    /*top: clamp(80px, 14.7059px + 14.7059dvw, 160px);*/
     gap: clamp(0.7rem, 0.0147rem + 2.38dvw, 2rem);
   }
 
@@ -94,7 +93,6 @@
     max-block-size: 90dvh;
     max-block-size: 90vh;
   }
-
 
 }
 
