@@ -1,0 +1,80 @@
+.swords-button,
+.swords-button * {
+  box-sizing: border-box;
+}
+
+.swords-button {
+  background-color: transparent;
+  padding: 0;
+  border: none;
+  inline-size: var(--swordsButton-size);
+  block-size: var(--swordsButton-size);
+  cursor: pointer;
+  outline: none;
+  transition: inline-size 0.3s, block-size 0.3s;
+}
+
+.swords-button__icons {
+  display: flex;
+  flex-direction: column;
+  inline-size: 100%;
+  block-size: 100%;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.swords-button__icon {
+  display: block;
+  inline-size: 100%;
+  aspect-ratio: 1 / 1;
+  position: absolute;
+  will-change: transform;
+  transform-style: preserve-3d;
+  pointer-events: none;
+}
+
+.swords-button__icons[data-no-animation] .swords-button__icon {
+  animation: none;
+}
+
+/* Базовые позиции с индивидуальными настройками */
+.swords-button__icon--top {
+  --y-offset: var(--icon-offset);
+  --rotate: 135deg;
+  transform: translateY(var(--icon-offset)) rotate(0deg);
+}
+
+.swords-button__icon--middle {
+  --y-offset: 0;
+  --rotate: 90deg;
+  transform: translateY(0) rotate(0deg);
+}
+
+.swords-button__icon--bottom {
+  --y-offset: calc(var(--icon-offset) * -1);
+  --rotate: 45deg;
+  transform: translateY(calc(var(--icon-offset) * -1)) rotate(0deg);
+}
+
+/* Ховер - спин анимация для всех иконок */
+.swords-button__icons:not(.active):not(.closing):hover .swords-button__icon {
+  animation: spin var(--spin-duration) var(--spin-easing) infinite;
+}
+
+/* Активное состояние - открытие */
+.swords-button__icons.active .swords-button__icon {
+  animation: open 0.8s ease forwards;
+}
+
+/* Закрытие */
+.swords-button__icons.closing .swords-button__icon {
+  animation: close 0.8s ease forwards;
+}
+
+.swords-button:focus-visible {
+  box-shadow: 0 0 0 2px rgba(0, 120, 255, 0.5);
+  border-radius: 4px;
+}

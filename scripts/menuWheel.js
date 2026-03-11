@@ -5,7 +5,6 @@ export class SmoothMenuWheel {
         this.items = Array.from(this.container.querySelectorAll('.popup__wheel-item'));
         this.totalItems = this.items.length;
         
-        // Начальный активный элемент
         this.activeIndex = 0;
         
         this.lastScrollTime = 0;
@@ -20,7 +19,6 @@ export class SmoothMenuWheel {
     }
     
     addEventListeners() {
-        // Скролл мышью
         this.container.addEventListener('wheel', (e) => {
             e.preventDefault();
             
@@ -36,7 +34,6 @@ export class SmoothMenuWheel {
             this.lastScrollTime = now;
         });
         
-        // Тач события
         let startY = 0;
         let startTime = 0;
         const minSwipeDistance = 50;
@@ -67,13 +64,11 @@ export class SmoothMenuWheel {
         });
 
         this.container.addEventListener('touchmove', (e) => {
-        // Если скроллим внутри колеса - блокируем поведение по умолчанию
         if (this.container.scrollTop <= 0 && e.cancelable) {
             e.preventDefault();
         }
     }, { passive: false });
 
-        // Клавиатура
         document.addEventListener('keydown', (e) => {
             if (!this.container.closest('.popup_is-opened')) return;
             
@@ -114,7 +109,6 @@ export class SmoothMenuWheel {
         this.items.forEach((item, index) => {
             item.classList.remove('active', 'adjacent-top', 'adjacent-bottom', 'hidden-top', 'hidden-bottom');
             
-            // Простая логика: активный и его соседи
             if (index === this.activeIndex) {
                 item.classList.add('active');
             } else if (index === (this.activeIndex - 1 + this.totalItems) % this.totalItems) {
