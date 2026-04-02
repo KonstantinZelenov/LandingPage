@@ -106,8 +106,12 @@
       </p>
       <ul class="main__icons">
         <li class="main__icon">
-          <button class="menu-button" type="button">
-            <img class="menu-button__icon" src="./images/icon-hamburger-menu.png" alt="Hamburger menu icon" />
+          <button class="swords-button" type="button" aria-label="Кнопка меню с вращающимися мечами" aria-expanded="false" data-swords-button>
+            <div class="swords-button__icons" role="presentation">
+                <img class="swords-button__icon swords-button__icon--top" src="./images/sword.png" alt="">
+                <img class="swords-button__icon swords-button__icon--middle" src="./images/sword.png" alt="">
+                <img class="swords-button__icon swords-button__icon--bottom" src="./images/sword.png" alt="">
+          </div>
           </button>
         </li>
         <li class="main__icon main__icon-translate">
@@ -395,13 +399,9 @@
     </div>
   </div>
 
-  <script type="module" src="./scripts/modal.js"></script>
   <script type="module" src="./scripts/lang-config.js"></script>
   <script type="module" src="./script.js"></script>
-  <script type="module" src="./scripts/radio.js"></script>
-  <script type="module" src="./scripts/formHandler.js"></script>
-  <script type="module" src="./scripts/theme-switcher.js"></script>
-  <script type="module" src="./scripts/menuWheel.js"></script>
+ 
 </body>
 
 </html>

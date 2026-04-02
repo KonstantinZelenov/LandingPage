@@ -2,7 +2,7 @@ import { openPopup, setupCloseButton, closePopup } from './modal.js';
 import { savePricingData } from './radio.js';
 
 const popupConfigs = [
-  { button: '.menu-button__icon', popup: '.popup_main-menu' },
+  { button: '.swords-button', popup: '.popup_main-menu' },
   { button: '[data-popup="contacts"]', popup: '.popup_navbar' },
   { button: '[data-popup="about-me"]', popup: '.popup_about-me' },
   { button: '[data-popup="about-projects"]', popup: '.popup_projects' },

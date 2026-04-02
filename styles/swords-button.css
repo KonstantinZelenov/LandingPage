@@ -1,3 +1,71 @@
+:root {
+  --spin-duration: 3s;
+  --spin-easing: cubic-bezier(0.4, 0, 0.2, 1);
+  --swordsButton-size: 30px;
+  --icon-offset: 11px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --swordsButton-size: 60px;
+    --icon-offset: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .swords-button__icons:hover .swords-button__icon--top,
+  .swords-button__icons:hover .swords-button__icon--middle,
+  .swords-button__icons:hover .swords-button__icon--bottom,
+  .swords-button__icons.active .swords-button__icon--top,
+  .swords-button__icons.active .swords-button__icon--middle,
+  .swords-button__icons.active .swords-button__icon--bottom,
+  .swords-button__icons.closing .swords-button__icon--top,
+  .swords-button__icons.closing .swords-button__icon--middle,
+  .swords-button__icons.closing .swords-button__icon--bottom {
+    animation-duration: 0.01ms;
+    animation-iteration-count: 1;
+  }
+}
+
+
+/* Спин - вращение вокруг оси X на месте */
+@keyframes spin {
+  0% {
+    transform: translateY(var(--y-offset)) rotateX(0deg);
+  }
+  100% {
+    transform: translateY(var(--y-offset)) rotateX(360deg);
+  }
+}
+
+/* Открытие - съезжаются в центр и поворачиваются */
+@keyframes open {
+  0% {
+    transform: translateY(var(--y-offset)) rotate(0deg);
+  }
+  40% {
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    transform: translateY(0) rotate(var(--rotate));
+  }
+}
+
+/* Закрытие - разъезжаются обратно */
+@keyframes close {
+  0% {
+    transform: translateY(0) rotate(var(--rotate));
+  }
+  40% {
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    transform: translateY(var(--y-offset)) rotate(0deg);
+  }
+}
+
+
+
 .swords-button,
 .swords-button * {
   box-sizing: border-box;
