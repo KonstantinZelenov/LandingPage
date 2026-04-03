@@ -1,8 +1,8 @@
 export class SmoothMenuWheel {
     constructor(containerSelector) {
         this.container = document.querySelector(containerSelector);
-        this.wheel = this.container.querySelector('.popup__wheel');
-        this.items = Array.from(this.container.querySelectorAll('.popup__wheel-item'));
+        this.wheel = this.container.querySelector('.wheel__list');
+        this.items = Array.from(this.container.querySelectorAll('.wheel__item'));
         this.totalItems = this.items.length;
         
         this.activeIndex = 0;

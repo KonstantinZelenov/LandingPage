@@ -1,14 +1,21 @@
 :root {
-  --main-font-size: 1rem;
-  --header-font-size: 2rem;
+  /* Colors */
   --main-color: antiquewhite;
   --background-color: #000;
-  --small-font-weight: 300;
-  --big-font-weight: 500;
-  --size-footer-img: 3.75rem;
+
+  /* Typography */
   --main-font-family: 'Witcher';
   --header-font-family: 'Kaushan';
+  --main-font-size: 1rem;
+  --header-font-size: 2rem;
+  --small-font-weight: 300;
+  --big-font-weight: 500;
 
+  /* Spacing */
+  --p-text-indent: 20px;
+  --size-footer-img: 3.75rem;
+
+  /* Safe areas */
   --sat: env(safe-area-inset-top, 0px);
   --sar: env(safe-area-inset-right, 0px);
   --sab: env(safe-area-inset-bottom, 0px);

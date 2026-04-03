@@ -28,13 +28,29 @@ export function initPopups() {
   const contactsPopup = document.querySelector('.popup_contacts');
   const pricesPopup = document.querySelector('.popup_prices');
 
-  nextButton.addEventListener('click', () => {
-  if (!savePricingData()) {
-    return;
+  if (nextButton && contactsPopup && pricesPopup) {
+    nextButton.addEventListener('click', () => {
+      if (!savePricingData()) {
+        return;
+      }
+      
+      closePopup(pricesPopup);
+      openPopup(contactsPopup);
+      setupCloseButton(contactsPopup);
+    });
   }
+
+  const mainMenuPopup = document.querySelector('.popup_main-menu');
+  const menuSwordsButton = document.querySelector('.popup_main-menu .swords-button');
   
-  closePopup(pricesPopup);
-  openPopup(contactsPopup);
-  setupCloseButton(contactsPopup);
-});
+  if (mainMenuPopup && menuSwordsButton) {
+    menuSwordsButton.addEventListener('click', (e) => {
+      e.stopPropagation();
+      setTimeout(() => {
+        if (mainMenuPopup.classList.contains('popup_is-opened')) {
+          closePopup(mainMenuPopup);
+        }
+      }, 100);
+    });
+  }
 }

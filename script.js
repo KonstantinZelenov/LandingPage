@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initPopups();
   initContactForm();
   new ThemeSwitcher();
-  new SmoothMenuWheel('.popup__wheel-container');
+  new SmoothMenuWheel('.wheel');
   initSwordsButtons();
   initTranslations();
 });

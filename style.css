@@ -1,9 +1,9 @@
 @import url('./styles/globals.css');
-@import url('./styles/keyframes.css');
-@import url('./styles/variables.css');
+@import url('./styles/settings/keyframes.css');
+@import url('./styles/settings/variables.css');
 @import url('./styles/body.css');
 @import url('./styles/main.css');
-@import url('./styles/fonts.css');
+@import url('./styles/settings/fonts.css');
 @import url('./styles/landscape.css');
 @import url('./styles/portrait.css');
 @import url('./styles/navbar.css');
@@ -15,3 +15,4 @@
 @import url('./styles/contact-form.css');
 @import url('./styles/button.css');
 @import url('./styles/swords-button.css');
+@import url('./styles/components.css/wheel.css');

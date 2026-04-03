@@ -134,30 +134,36 @@
 
   <div class="popup popup_main-menu">
     <div class="popup__content">
-      <button class="popup__close-button" aria-label="Close modal" type="button"></button>
-      <div class="popup__wheel-container">
-        <ul class="popup__list popup__wheel">
-          <li class="popup__item popup__wheel-item">
+       <button class="swords-button" type="button" aria-label="Кнопка меню с вращающимися мечами" aria-expanded="false" data-swords-button>
+            <div class="swords-button__icons" role="presentation">
+                <img class="swords-button__icon swords-button__icon--top" src="./images/sword.png" alt="">
+                <img class="swords-button__icon swords-button__icon--middle" src="./images/sword.png" alt="">
+                <img class="swords-button__icon swords-button__icon--bottom" src="./images/sword.png" alt="">
+          </div>
+          </button>
+      <div class="wheel">
+        <ul class="popup__list wheel__list">
+          <li class="popup__item wheel__item">
             <button class="popup__button" type="button" data-popup="about-me" data-i18n="about">
               About me
             </button>
           </li>
-          <li class="popup__item popup__wheel-item">
+          <li class="popup__item wheel__item">
             <button class="popup__button" type="button" data-popup="about-projects" data-i18n="projects">
               Projects
             </button>
           </li>
-          <li class="popup__item popup__wheel-item">
+          <li class="popup__item wheel__item">
             <button class="popup__button" type="button" data-popup="about-school" data-i18n="school">
               School
             </button>
           </li>
-          <li class="popup__item popup__wheel-item">
+          <li class="popup__item wheel__item">
             <button class="popup__button" type="button" data-popup="price" data-i18n="prices">
               Prices
             </button>
           </li>
-          <li class="popup__item popup__wheel-item">
+          <li class="popup__item wheel__item">
             <button class="contacts-button" type="button" data-popup="contacts">
               <img class="contacts-button__icon" src="./images/contacts-mail.png" alt="Email icon" />
               <img class="contacts-button__icon" src="./images/contacts-phone.png" alt="Phone icon" />
@@ -399,6 +405,7 @@
     </div>
   </div>
 
+ 
   <script type="module" src="./script.js"></script>
  
 </body>

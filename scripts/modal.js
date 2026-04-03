@@ -81,6 +81,26 @@ export function closePopup(popup) {
       });
     }
   } 
+
+  if (popup.classList.contains('popup_main-menu')) {
+    const swordsButtons = document.querySelectorAll('.swords-button[data-swords-button]');
+    swordsButtons.forEach(button => {
+      const iconsContainer = button.querySelector('.swords-button__icons');
+      if (iconsContainer && iconsContainer.classList.contains('active')) {
+        // Убираем active и запускаем closing
+        iconsContainer.classList.remove('active');
+        iconsContainer.classList.add('closing');
+        button.setAttribute('aria-expanded', 'false');
+        
+        // Через 800ms убираем closing
+        setTimeout(() => {
+          if (iconsContainer) {
+            iconsContainer.classList.remove('closing');
+          }
+        }, 800);
+      }
+    });
+  }
 }
 
 export function setupCloseButton(popup) {

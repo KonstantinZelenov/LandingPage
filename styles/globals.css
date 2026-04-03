@@ -1,11 +1,16 @@
 *,
 *::after,
 *::before {
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
 
 html {
-  scroll-behavior: smooth; 
+  scroll-behavior: smooth;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+  tap-highlight-color: transparent;
 }
 
 body,
@@ -16,9 +21,16 @@ h4,
 h5,
 h6,
 p,
-fieldset {
+fieldset,
+ul,
+ol {
   margin: 0;
   padding: 0;
+}
+
+ul,
+ol {
+  list-style: none;
 }
 
 h1,
@@ -29,13 +41,6 @@ h5 {
   font-weight: var(--big-font-weight);
   font-style: normal;
   text-transform: uppercase;
-}
-
-ul,
-ol {
-  margin: 0;
-  padding: 0;
-  list-style: none;
 }
 
 a {
@@ -54,6 +59,11 @@ select {
   cursor: pointer;
 }
 
+img {
+  display: block;
+  inline-size: 100%;
+}
+
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -63,15 +73,4 @@ select {
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   border: 0;
-}
-
-img {
-  inline-size: 100%;
-  display: block;
-}
-
-video,
-iframe {
-  inline-size: 100%;
-  aspect-ratio: 16 / 9; 
 }
