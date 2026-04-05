@@ -22,7 +22,26 @@
   transform-origin: center;
 }
 
-.wheel__item.active .popup__button {
+.wheel__button {
+  color: var(--main-color);
+  font-family: 'Witcher';
+  font-size: 30px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.wheel__button:hover {
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+  transform: scale(1.1);
+}
+
+.wheel__button:active {
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.9),
+               0 0 16px rgba(255, 255, 255, 0.5);
+  transform: scale(1.2);
+}
+
+.wheel__item.active .wheel__button {
   font-size: 32px;
   text-shadow: 0 0 15px rgba(255, 255, 255, 0.9),
                0 0 30px rgba(255, 255, 255, 0.4);

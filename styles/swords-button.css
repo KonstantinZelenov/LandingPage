@@ -64,13 +64,6 @@
   }
 }
 
-
-
-.swords-button,
-.swords-button * {
-  box-sizing: border-box;
-}
-
 .swords-button {
   background-color: transparent;
   padding: 0;
@@ -145,4 +138,21 @@
 .swords-button:focus-visible {
   box-shadow: 0 0 0 2px rgba(0, 120, 255, 0.5);
   border-radius: 4px;
+}
+
+
+.popup_main-menu .swords-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 101;
+}
+
+@media (max-width: 768px) {
+  .popup_main-menu .swords-button {
+    top: 5px;
+    right: 5px;
+    --swordsButton-size: 40px;
+    --icon-offset: 15px;
+  }
 }

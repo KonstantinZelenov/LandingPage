@@ -9,10 +9,10 @@
 @import url('./styles/navbar.css');
 @import url('./styles/popup.css');
 @import url('./styles/about-me.css');
-@import url('./styles/projects.css');
 @import url('./styles/about-school.css');
 @import url('./styles/prices.css');
 @import url('./styles/contact-form.css');
 @import url('./styles/button.css');
 @import url('./styles/swords-button.css');
-@import url('./styles/components.css/wheel.css');
+@import url('./styles/components/wheel.css');
+@import url('./styles/components/contacts-button.css');
