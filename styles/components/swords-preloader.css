@@ -6,12 +6,13 @@
 .swords-preloader {
   display: none;
   position: absolute;
-  --size: 50dvw;
+  --size: 25dvw;
   inline-size: var(--size);
   aspect-ratio: 1 / 1;
   box-sizing: border-box;
   perspective: 1200px;
   perspective-origin: center; 
+  z-index: 1000;
 }
 
 .swords-preloader__icons {
