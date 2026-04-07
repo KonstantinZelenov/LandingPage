@@ -205,14 +205,14 @@ async function handleContactSubmit(event) {
       const popup = event.target.closest('.popup');
       if (popup) closePopup(popup);
       
+      hidePreloader();
       alert('Message sent successfully!');
     } else {
       throw new Error('Server error');
     }
   } catch (error) {
     console.error('Error:', error);
-    alert('Error sending message. Please try again.');
-  } finally {
     hidePreloader();
+    alert('Error sending message. Please try again.');
   }
 }
