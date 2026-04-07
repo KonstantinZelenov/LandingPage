@@ -199,12 +199,13 @@ async function handleContactSubmit(event) {
     });
     
     if (response.ok) {
-      hidePreloader();
-      const popup = event.target.closest('.popup');
-      if (popup) closePopup(popup); 
-      alert('Message sent successfully!');  
       sessionStorage.removeItem('pricingData');
       event.target.reset();
+      
+      const popup = event.target.closest('.popup');
+      if (popup) closePopup(popup);
+      
+      alert('Message sent successfully!');
     } else {
       throw new Error('Server error');
     }
