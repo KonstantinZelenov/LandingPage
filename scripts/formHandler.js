@@ -188,7 +188,7 @@ async function handleContactSubmit(event) {
   
   const pricingData = JSON.parse(sessionStorage.getItem('pricingData') || '{}');
 
-  showPreloader();
+  
   
   try {
     const baseURL = window.location.origin;
@@ -201,6 +201,7 @@ async function handleContactSubmit(event) {
     if (response.ok) {
       const popup = event.target.closest('.popup');
       if (popup) closePopup(popup);
+      showPreloader();
       sessionStorage.removeItem('pricingData');
       event.target.reset();
       
