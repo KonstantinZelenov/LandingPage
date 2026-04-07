@@ -206,7 +206,6 @@ async function handleContactSubmit(event) {
       if (popup) closePopup(popup);
       
       hidePreloader();
-      alert('Message sent successfully!');
     } else {
       throw new Error('Server error');
     }
