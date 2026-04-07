@@ -30,6 +30,17 @@ const errorTexts = {
   message_maxLength: 'Максимум 1000 символов'
 };
 
+
+function showPreloader() {
+  const preloader = document.querySelector('.swords-preloader');
+  if (preloader) preloader.style.display = 'block';
+}
+
+function hidePreloader() {
+  const preloader = document.querySelector('.swords-preloader');
+  if (preloader) preloader.style.display = 'none';
+}
+
 // Функция для очистки входных данных от опасных символов
 function sanitizeInput(text) {
   if (typeof text !== 'string') return text;
@@ -108,6 +119,54 @@ function validateForm(form) {
   return isValid;
 }
 
+/*async function handleContactSubmit(event) {
+  event.preventDefault();
+  
+  if (!validateForm(event.target)) {
+    const firstError = event.target.querySelector('.error');
+    if (firstError) {
+      firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      firstError.focus();
+    }
+    return;
+  }
+  
+  const formData = new FormData(event.target);
+  const sanitizedData = {};
+  
+  for (let [key, value] of formData.entries()) {
+    sanitizedData[key] = sanitizeInput(value);
+  }
+  
+  const pricingData = JSON.parse(sessionStorage.getItem('pricingData') || '{}');й
+
+  showPreloader();
+  
+  try {
+    const baseURL = window.location.origin;
+    const response = await fetch(`${baseURL}/api/send-form`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...sanitizedData, ...pricingData })
+    });
+    
+    if (response.ok) {
+      hidePreloader();
+      alert('Message sent successfully!');
+      sessionStorage.removeItem('pricingData');
+      event.target.reset();
+      
+      const popup = event.target.closest('.popup');
+      if (popup) closePopup(popup);
+    } else {
+      throw new Error('Server error');
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    alert('Error sending message. Please try again.');
+  }
+}*/
+
 async function handleContactSubmit(event) {
   event.preventDefault();
   
@@ -128,6 +187,8 @@ async function handleContactSubmit(event) {
   }
   
   const pricingData = JSON.parse(sessionStorage.getItem('pricingData') || '{}');
+
+  showPreloader();
   
   try {
     const baseURL = window.location.origin;
@@ -150,5 +211,7 @@ async function handleContactSubmit(event) {
   } catch (error) {
     console.error('Error:', error);
     alert('Error sending message. Please try again.');
+  } finally {
+    hidePreloader();
   }
 }

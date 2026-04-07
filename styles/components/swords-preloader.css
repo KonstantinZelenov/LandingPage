@@ -1,0 +1,50 @@
+@keyframes rotateGroup {
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(360deg); }
+}
+
+.swords-preloader {
+  display: none;
+  position: absolute;
+  --size: 50dvw;
+  inline-size: var(--size);
+  aspect-ratio: 1 / 1;
+  box-sizing: border-box;
+  perspective: 1200px;
+  perspective-origin: center; 
+}
+
+.swords-preloader__icons {
+  inline-size: 100%;
+  block-size: 100%;
+  transform-style: preserve-3d;
+  animation: rotateGroup 5s linear infinite;
+}
+
+.swords-preloader__icon {
+  display: block;
+  inline-size: 100%;
+  aspect-ratio: 1 / 1;
+  position: absolute;
+  will-change: transform;
+  transform-style: preserve-3d;
+  pointer-events: none;
+} 
+
+.swords-preloader__icon--first {
+  transform: rotateY(0deg) rotateX(30deg);
+}
+
+.swords-preloader__icon--second {
+  transform: rotateY(120deg) rotateX(30deg);
+}
+
+.swords-preloader__icon--third {
+  transform: rotateY(240deg) rotateX(30deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .swords-preloader__icons {
+    animation: none;
+  }
+}

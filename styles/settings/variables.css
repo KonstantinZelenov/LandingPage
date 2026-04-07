@@ -1,24 +1,101 @@
+/* ========== VARIABLES.CSS (COMPLETE) ========== */
 :root {
-  /* Colors */
-  --main-color: antiquewhite;
-  --background-color: #000;
-
-  /* Typography */
-  --main-font-family: 'Witcher';
-  --header-font-family: 'Kaushan';
+  /* ===== Base ===== */
   --main-font-size: 1rem;
   --header-font-size: 2rem;
+  --main-font-family: 'Witcher';
+  --header-font-family: 'Kaushan';
   --small-font-weight: 300;
   --big-font-weight: 500;
-
-  /* Spacing */
-  --p-text-indent: 20px;
   --size-footer-img: 3.75rem;
 
-  /* Safe areas */
+  /* ===== Safe areas ===== */
   --sat: env(safe-area-inset-top, 0px);
   --sar: env(safe-area-inset-right, 0px);
   --sab: env(safe-area-inset-bottom, 0px);
   --sal: env(safe-area-inset-left, 0px);
+
+  /* ===== MOBILE variables ===== */
+  --padding-mobile: calc(clamp(0.5rem, -0.571rem + 5.357dvw, 2rem) + var(--sat));
+  --header-font-mobile: clamp(0.8rem, 0.5rem + 4.5dvw, 3rem);
+  --header-letter-mobile: clamp(0.15rem, 0.0625rem + 0.6dvw, 0.5rem);
+  --desc-font-mobile: clamp(0.4375rem, 0.125rem + 2dvw, 0.875rem);
+  --desc-letter-mobile: clamp(0.1rem, 0.05rem + 0.35dvw, 0.5rem);
+  --icons-right-mobile: clamp(1.5625rem, 0.223rem + 6.696dvw, 3rem);
+  --icons-top-mobile: clamp(3.75rem, 1.071rem + 13.393dvw, 5rem);
+  --icons-gap-mobile: clamp(1rem, -1.2857rem + 7.1429dvw, 2rem);
+  --icon-mobile: clamp(1.875rem, 0.625rem + 5.3571dvw, 3rem);
+
+  /* Mobile landscape specific */
+  --main-padding-top-landscape: 10px;
+  --prices-button-height-landscape: 50px;
+  --video-container-min-width: 50%;
+  --contact-form-gap: 5px;
+  --contact-form-field-gap: 5px;
+  --contact-form-first-padding: 0;
+  --popup-about-padding: 0;
+  --popup-max-width: 80vw;
+  --popup-max-width-dynamic: 80dvw;
+  --popup-max-height: 100dvh;
+  --popup-padding: 0;
+  --popup-wheel-height: 90dvh;
+  --popup-wheel-height-fallback: 90vh;
+
+  /* ===== TABLET variables ===== */
+  --padding-tablet: calc(clamp(1rem, -0.5rem + 3dvw, 2.5rem) + var(--sat));
+  --header-font-tablet: clamp(2rem, 1rem + 2dvw, 4rem);
+  --desc-font-tablet: clamp(0.75rem, 0.5rem + 0.8dvw, 1.25rem);
+  --icons-right-tablet: clamp(2rem, 1rem + 2dvw, 3rem);
+  --icons-gap-tablet: clamp(1.5rem, 0.5rem + 2dvw, 2.5rem);
+  --icons-top-tablet: clamp(4rem, 2rem + 5dvw, 6rem);
+  --icon-tablet: clamp(2.5rem, 1.5rem + 2dvw, 4rem);
+
+  /* Tablet landscape */
+  --padding-tablet-landscape: clamp(0.625rem, -1.25rem + 5dvw, 1.5rem);
+  --icons-gap-tablet-landscape: clamp(0.7rem, 0.0147rem + 2.38dvw, 2rem);
+  --icon-tablet-landscape: clamp(1.25rem, -0.909rem + 7.2dvw, 2.6rem);
+  --header-font-tablet-landscape: clamp(0.6rem, 0.5rem + 4.5dvw, 1.5rem);
+  --header-letter-tablet-landscape: clamp(0.1rem, 0.0625rem + 0.6dvw, 0.75rem);
+  --header-line-height-tablet: 1;
+  --desc-font-tablet-landscape: clamp(0.4rem, 0.125rem + 2dvw, 0.875rem);
+  --desc-letter-tablet-landscape: clamp(0.1rem, 0.05rem + 0.35dvw, 0.5rem);
+
+  /* ===== DESKTOP variables ===== */
+  --padding-desktop: clamp(2rem, 2rem + 1dvw, 5rem);
+  --header-font-desktop: clamp(3rem, 3rem + 3dvw, 8rem);
+  --header-letter-desktop: clamp(0.5rem, 0.5rem + 0.5dvw, 1rem);
+  --desc-font-desktop: clamp(0.875rem, 0.875rem + 0.5dvw, 2rem);
+  --desc-letter-desktop: clamp(0.5rem, 0.3rem + 0.5dvw, 1.5rem);
+  --icons-right-desktop: clamp(3rem, 3rem + 2dvw, 8rem);
+  --icons-gap-desktop: clamp(2rem, 2rem + 1dvw, 4rem);
+  --icons-top-desktop: clamp(160px, 10vh, 300px);
+  --icon-desktop: clamp(3rem, 3rem + 2dvw, 8rem);
+
+  /* Desktop landscape */
+  --padding-desktop-landscape: calc(clamp(2rem, 2rem + 1dvw, 5rem) + var(--sat)) 
+                                calc(clamp(2rem, 2rem + 1dvw, 5rem) + var(--sar)) 
+                                calc(clamp(2rem, 2rem + 1dvw, 5rem) + var(--sab)) 
+                                calc(clamp(2rem, 2rem + 1dvw, 5rem) + var(--sal));
+  --icons-gap-desktop-landscape: clamp(2rem, 1rem + 1dvw, 3rem);
+  --icon-desktop-landscape: clamp(2.6rem, 2rem + 1dvw, 4rem);
+  --header-font-desktop-landscape: clamp(3.7rem, 3rem + 2dvw, 8rem);
+  --header-letter-desktop-landscape: clamp(0.5rem, 0.5rem + 0.5dvw, 1rem);
+  --desc-font-desktop-landscape: clamp(1rem, 0.8rem + 0.5dvw, 2rem);
+  --desc-letter-desktop-landscape: clamp(0.5rem, 0.3rem + 0.5dvw, 1.5rem);
+
+  /* Portrait desktop */
+  --icons-right-portrait-desktop: clamp(3rem, 3rem + 2dvw, 8rem);
+
+  /* ===== Theme colors ===== */
+  --main-color-light: #000;
+  --bg-color-light: #fff;
+  --main-color-dark: antiquewhite;
+  --bg-color-dark: #000;
+  --main-color: var(--main-color-dark);
+  --background-color: var(--bg-color-dark);
 }
 
+.theme-light {
+  --main-color: var(--main-color-light);
+  --background-color: var(--bg-color-light);
+}
