@@ -199,11 +199,10 @@ async function handleContactSubmit(event) {
     });
     
     if (response.ok) {
-      sessionStorage.removeItem('pricingData');
-      event.target.reset();
-      
       const popup = event.target.closest('.popup');
       if (popup) closePopup(popup);
+      sessionStorage.removeItem('pricingData');
+      event.target.reset();
       
       hidePreloader();
     } else {
