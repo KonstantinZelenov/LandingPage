@@ -33,7 +33,7 @@ const errorTexts = {
 
 function showPreloader() {
   const preloader = document.querySelector('.swords-preloader');
-  if (preloader) preloader.style.display = 'block';
+  if (preloader) preloader.style.display = 'flex';
 }
 
 function hidePreloader() {
@@ -199,9 +199,9 @@ async function handleContactSubmit(event) {
     });
     
     if (response.ok) {
+      showPreloader();
       const popup = event.target.closest('.popup');
       if (popup) closePopup(popup);
-      showPreloader();
       sessionStorage.removeItem('pricingData');
       event.target.reset();
       

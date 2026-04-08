@@ -6,18 +6,19 @@
 .swords-preloader {
   display: none;
   position: absolute;
-  --size: 25dvw;
-  inline-size: var(--size);
-  aspect-ratio: 1 / 1;
-  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
   perspective: 1200px;
   perspective-origin: center; 
   z-index: 1000;
+  background-color: black;
 }
 
 .swords-preloader__icons {
-  inline-size: 100%;
-  block-size: 100%;
+  inline-size: 30%;
+  block-size: 30%;
   transform-style: preserve-3d;
   animation: rotateGroup 5s linear infinite;
 }
