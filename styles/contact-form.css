@@ -46,7 +46,6 @@
   vertical-align: top;
 }
 
-/* Стили для валидации */
 .contact-form__input.error,
 .contact-form__textarea.error {
   border-color: #ff4444;

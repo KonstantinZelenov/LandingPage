@@ -2,19 +2,20 @@
 @import url('./styles/settings/keyframes.css');
 @import url('./styles/settings/variables.css');
 @import url('./styles/body.css');
-@import url('./styles/main.css');
+@import url('./styles/layouts/main.css');
 @import url('./styles/settings/fonts.css');
-/* @import url('./styles/landscape.css');
-@import url('./styles/portrait.css'); */
 @import url('./styles/navbar.css');
-@import url('./styles/popup.css');
+@import url('./styles/layouts/popup.css');
 @import url('./styles/about-me.css');
 @import url('./styles/about-school.css');
 @import url('./styles/prices.css');
 @import url('./styles/contact-form.css');
-@import url('./styles/button.css');
-@import url('./styles/swords-button.css');
+@import url('/styles/responsive.css');
+@import url('./styles/components/button.css');
+@import url('./styles/components/swords-button.css');
 @import url('./styles/components/wheel.css');
 @import url('./styles/components/contacts-button.css');
-@import url('/styles/responsive.css');
 @import url('/styles/components/swords-preloader.css');
+
+/* @import url('./styles/landscape.css');
+@import url('./styles/portrait.css'); */
