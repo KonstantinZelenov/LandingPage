@@ -1,4 +1,5 @@
 export default async function handler(request, response) {
+  // CORS
   response.setHeader('Access-Control-Allow-Origin', '*');
   response.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   response.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -15,149 +16,120 @@ export default async function handler(request, response) {
   }
   
   try {
-    let body = '';
-    for await (const chunk of request) {
-      body += chunk;
-    }
+    // Vercel уже парсит body - используем готовое
+    const formData = request.body || {};
     
-    if (!body) {
-      return response.status(400).json({ 
-        success: false, 
-        error: 'Empty request body' 
-      });
-    }
+    // Простая валидация
+    const errors = [];
     
-    let formData;
-    try {
-      formData = JSON.parse(body);
-    } catch (parseError) {
-      return response.status(400).json({ 
-        success: false, 
-        error: 'Invalid JSON format' 
-      });
-    }
-    
-    const validationErrors = [];
     if (!formData.name || formData.name.trim() === '') {
-      validationErrors.push('Имя обязательно');
+      errors.push('Имя обязательно');
+    } else if (formData.name.length < 2 || formData.name.length > 30) {
+      errors.push('Имя от 2 до 30 символов');
     }
     
     if (!formData.mail || formData.mail.trim() === '') {
-      validationErrors.push('Email обязателен');
+      errors.push('Email обязателен');
+    } else {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formData.mail)) {
+        errors.push('Неверный формат email');
+      }
     }
     
     if (!formData.message || formData.message.trim() === '') {
-      validationErrors.push('Сообщение обязательно');
+      errors.push('Сообщение обязательно');
+    } else if (formData.message.length < 10 || formData.message.length > 1000) {
+      errors.push('Сообщение от 10 до 1000 символов');
     }
     
-    if (formData.mail) {
-      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-      if (!emailRegex.test(formData.mail)) {
-        validationErrors.push('Неверный формат email');
-      }
-    }
-    
-    if (formData.name) {
-      if (formData.name.length < 2 || formData.name.length > 20) {
-        validationErrors.push('Имя должно быть от 2 до 20 символов');
-      }
-      const nameRegex = /^[a-zA-Zа-яА-ЯёЁ\s\-']+$/u;
-      if (!nameRegex.test(formData.name)) {
-        validationErrors.push('Имя содержит недопустимые символы');
-      }
-    }
-    
-    if (formData.message && (formData.message.length < 10 || formData.message.length > 1000)) {
-      validationErrors.push('Сообщение должно быть от 10 до 1000 символов');
-    }
-    
-    if (validationErrors.length > 0) {
+    if (errors.length > 0) {
       return response.status(400).json({ 
         success: false, 
-        error: validationErrors.join(', ') 
+        error: errors.join(', ')
       });
     }
-
-    const sanitizeForTelegram = (text) => {
-      if (typeof text !== 'string') return String(text);
-      return text
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;');
+    
+    // Простое экранирование без HTML
+    const cleanText = (text) => {
+      if (!text) return 'Не указано';
+      return String(text).replace(/[<>_*[\]()~`>#+\-=|{}.!]/g, '\\$&');
     };
     
-    const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
-    const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
+    // Проверка переменных окружения
+    const botToken = process.env.TELEGRAM_BOT_TOKEN;
+    const chatId = process.env.TELEGRAM_CHAT_ID;
     
-    if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
-      console.error('Missing Telegram environment variables');
+    if (!botToken || !chatId) {
+      console.error('Missing Telegram env vars');
       return response.status(500).json({ 
         success: false, 
-        error: 'Server configuration error' 
+        error: 'Server config error' 
       });
     }
     
+    // Формируем сообщение
     const message = `
-🎯 НОВАЯ ЗАЯВКА С ЛЕНДИНГА!
-👤 Имя: ${sanitizeForTelegram(formData.name)}
-📧 Email: ${sanitizeForTelegram(formData.mail)}
-🗡️ Оружие: ${sanitizeForTelegram(formData.lesson_type || 'Не указано')}
-💬 Сообщение: ${sanitizeForTelegram(formData.message)}
-🏋️‍♂️ Тренировка: ${sanitizeForTelegram(formData.trainingType || 'Не указано')}
-⏱️ Длительность: ${sanitizeForTelegram(formData.duration || 'Не указано')}
-💰 Стоимость: ${sanitizeForTelegram(formData.prices || 'Не указано')}
-📝 Описание: ${sanitizeForTelegram(formData.description || 'Не указано')}
-🕒 Время: ${new Date().toLocaleString('ru-RU')}`.trim();
+🎯 НОВАЯ ЗАЯВКА
 
+👤 Имя: ${cleanText(formData.name)}
+📧 Email: ${cleanText(formData.mail)}
+🗡️ Оружие: ${cleanText(formData.lesson_type)}
+💬 Сообщение: ${cleanText(formData.message)}
+🏋️ Тренировка: ${cleanText(formData.trainingType)}
+⏱️ Длительность: ${cleanText(formData.duration)}
+💰 Стоимость: ${cleanText(formData.prices)}
+📝 Описание: ${cleanText(formData.description)}
+🕒 Время: ${new Date().toLocaleString('ru-RU')}
+    `.trim();
+    
+    // Отправка с таймаутом
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 10000);
     
-    const telegramResponse = await fetch(
-      `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`,
+    const tgResponse = await fetch(
+      `https://api.telegram.org/bot${botToken}/sendMessage`,
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          chat_id: TELEGRAM_CHAT_ID,
-          text: message,
-          parse_mode: 'HTML'
+          chat_id: chatId,
+          text: message
+          // Без parse_mode - безопасно
         }),
         signal: controller.signal
       }
     );
     
     clearTimeout(timeoutId);
+    const tgData = await tgResponse.json();
     
-    const telegramData = await telegramResponse.json();
-    
-    if (telegramData.ok) {
+    if (tgData.ok) {
       response.status(200).json({ 
         success: true, 
-        message: 'Form submitted successfully!' 
+        message: 'Отправлено!' 
       });
     } else {
-      console.error('Telegram API error:', telegramData);
+      console.error('Telegram error:', tgData);
       response.status(500).json({ 
         success: false, 
-        error: 'Failed to send message to Telegram' 
+        error: 'Ошибка отправки' 
       });
     }
     
   } catch (error) {
     console.error('Server error:', error);
     
-    let errorMessage = 'Internal server error';
-    let statusCode = 500;
-    
     if (error.name === 'AbortError') {
-      errorMessage = 'Telegram API timeout';
-      statusCode = 408;
+      response.status(408).json({ 
+        success: false, 
+        error: 'Таймаут отправки' 
+      });
+    } else {
+      response.status(500).json({ 
+        success: false, 
+        error: 'Ошибка сервера' 
+      });
     }
-    
-    response.status(statusCode).json({ 
-      success: false, 
-      error: errorMessage 
-    });
   }
 }
