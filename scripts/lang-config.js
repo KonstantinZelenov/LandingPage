@@ -223,10 +223,9 @@ export function initTranslations() {
   });
   translator.addModule(navbarContainer, navbarTranslations);
   
-  // Устанавливаем язык по умолчанию
+  
   translator.translateAll('en');
   
-  // Обработчик переключения языка
   function handleTranslateClick() {
     const currentLang = translator.getCurrentLang();
     const nextLang = currentLang === 'en' ? 'ru' : 'en';
