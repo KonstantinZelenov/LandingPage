@@ -1,5 +1,4 @@
 export default async function handler(request, response) {
-  // CORS
   response.setHeader('Access-Control-Allow-Origin', '*');
   response.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   response.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -16,10 +15,8 @@ export default async function handler(request, response) {
   }
   
   try {
-    // Vercel уже парсит body - используем готовое
     const formData = request.body || {};
     
-    // Простая валидация
     const errors = [];
     
     if (!formData.name || formData.name.trim() === '') {
@@ -50,13 +47,11 @@ export default async function handler(request, response) {
       });
     }
     
-    // Простое экранирование без HTML
     const cleanText = (text) => {
       if (!text) return 'Не указано';
       return String(text).replace(/[<>_*[\]()~`>#+\-=|{}.!]/g, '\\$&');
     };
     
-    // Проверка переменных окружения
     const botToken = process.env.TELEGRAM_BOT_TOKEN;
     const chatId = process.env.TELEGRAM_CHAT_ID;
     
@@ -68,22 +63,20 @@ export default async function handler(request, response) {
       });
     }
     
-    // Формируем сообщение
     const message = `
-🎯 НОВАЯ ЗАЯВКА
+      🎯 НОВАЯ ЗАЯВКА
 
-👤 Имя: ${cleanText(formData.name)}
-📧 Email: ${cleanText(formData.mail)}
-🗡️ Оружие: ${cleanText(formData.lesson_type)}
-💬 Сообщение: ${cleanText(formData.message)}
-🏋️ Тренировка: ${cleanText(formData.trainingType)}
-⏱️ Длительность: ${cleanText(formData.duration)}
-💰 Стоимость: ${cleanText(formData.prices)}
-📝 Описание: ${cleanText(formData.description)}
-🕒 Время: ${new Date().toLocaleString('ru-RU')}
-    `.trim();
+      👤 Имя: ${cleanText(formData.name)}
+      📧 Email: ${cleanText(formData.mail)}
+      🗡️ Оружие: ${cleanText(formData.lesson_type)}
+      💬 Сообщение: ${cleanText(formData.message)}
+      🏋️ Тренировка: ${cleanText(formData.trainingType)}
+      ⏱️ Длительность: ${cleanText(formData.duration)}
+      💰 Стоимость: ${cleanText(formData.prices)}
+      📝 Описание: ${cleanText(formData.description)}
+      🕒 Время: ${new Date().toLocaleString('ru-RU')}
+          `.trim();
     
-    // Отправка с таймаутом
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 10000);
     
@@ -95,7 +88,6 @@ export default async function handler(request, response) {
         body: JSON.stringify({
           chat_id: chatId,
           text: message
-          // Без parse_mode - безопасно
         }),
         signal: controller.signal
       }
