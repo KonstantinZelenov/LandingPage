@@ -1,4 +1,3 @@
-// swordsButton.js
 export function initSwordsButtons() {
   'use strict';
   const buttons = document.querySelectorAll('.swords-button[data-swords-button]');

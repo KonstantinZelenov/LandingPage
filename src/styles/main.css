@@ -1,0 +1,21 @@
+@import url('./settings/globals.css');
+@import url('./settings/fonts.css');
+@import url('./settings/keyframes.css');
+@import url('./settings/variables.css');
+@import url('./settings/responsive.css');
+@import url('./settings/body.css');
+@import url('./layouts/main.css');
+@import url('./layouts/popup.css');
+@import url('./pages/social-links.css');
+@import url('./pages/about-me.css');
+@import url('./pages/about-school.css');
+@import url('./pages/prices.css');
+@import url('./pages/contact-form.css');
+@import url('./components/button.css');
+@import url('./components/swords-button.css');
+@import url('./components/wheel.css');
+@import url('./components/contacts-button.css');
+@import url('./components/swords-preloader.css');
+
+/* @import url('./styles/landscape.css');
+@import url('./styles/portrait.css'); */
