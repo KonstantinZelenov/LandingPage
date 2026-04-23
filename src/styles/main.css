@@ -1,21 +1,32 @@
-@import url('./settings/globals.css');
-@import url('./settings/fonts.css');
-@import url('./settings/keyframes.css');
-@import url('./settings/variables.css');
-@import url('./settings/responsive.css');
+/* 1. Базовые настройки (ничего не зависит друг от друга) */
+@import url('./settings/variables.css');     /* переменные — самые первые */
+@import url('./settings/fonts.css');        /* шрифты */
+@import url('./settings/globals.css');      /* сброс стилей */
+@import url('./settings/keyframes.css');    /* анимации */
+
+/* 2. Глобальные стили */
 @import url('./settings/body.css');
+
+/* 3. Крупные блоки (layouts) */
 @import url('./layouts/main.css');
 @import url('./layouts/popup.css');
-@import url('./pages/social-links.css');
+
+/* 4. Стили страниц и компонентов */
 @import url('./pages/about-me.css');
 @import url('./pages/about-school.css');
 @import url('./pages/prices.css');
 @import url('./pages/contact-form.css');
+@import url('./pages/social-links.css');
+
+/* 5. Переиспользуемые компоненты */
 @import url('./components/button.css');
 @import url('./components/swords-button.css');
 @import url('./components/wheel.css');
 @import url('./components/contacts-button.css');
 @import url('./components/swords-preloader.css');
+
+/* 6. Медиазапросы (всегда в конце!) */
+@import url('./settings/responsive.css');
 
 /* @import url('./styles/landscape.css');
 @import url('./styles/portrait.css'); */

@@ -30,6 +30,35 @@ const errorTexts = {
   message_maxLength: 'Максимум 1000 символов'
 };
 
+// 🔥 НОВОЕ: Показ уведомления внутри формы вместо alert
+function showFormNotification(form, message, isError = true) {
+  // Удаляем старое уведомление, если есть
+  const oldNotification = form.querySelector('.form-notification');
+  if (oldNotification) oldNotification.remove();
+  
+  const notification = document.createElement('div');
+  notification.className = `form-notification ${isError ? 'form-notification--error' : 'form-notification--success'}`;
+  notification.textContent = message;
+  notification.style.cssText = `
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 14px;
+    ${isError ? 'background-color: rgba(255, 68, 68, 0.2); color: #ff4444; border: 1px solid #ff4444;' : 'background-color: rgba(76, 175, 80, 0.2); color: #4CAF50; border: 1px solid #4CAF50;'}
+  `;
+  
+  form.appendChild(notification);
+  
+  // Авто-скрытие через 4 секунды
+  setTimeout(() => {
+    if (notification && notification.parentNode) {
+      notification.style.opacity = '0';
+      notification.style.transition = 'opacity 0.3s';
+      setTimeout(() => notification.remove(), 300);
+    }
+  }, 4000);
+}
 
 function showPreloader() {
   const preloader = document.querySelector('.swords-preloader');
@@ -41,7 +70,21 @@ function hidePreloader() {
   if (preloader) preloader.style.display = 'none';
 }
 
-// Функция для очистки входных данных от опасных символов
+// Блокировка/разблокировка кнопки отправки
+function setSubmitButtonState(form, isSubmitting) {
+  const submitButton = form.querySelector('.contact-form__button');
+  if (!submitButton) return;
+  
+  if (isSubmitting) {
+    submitButton.disabled = true;
+    submitButton.dataset.originalText = submitButton.textContent;
+    submitButton.textContent = 'Отправка...';
+  } else {
+    submitButton.disabled = false;
+    submitButton.textContent = submitButton.dataset.originalText || 'Send your message';
+  }
+}
+
 function sanitizeInput(text) {
   if (typeof text !== 'string') return text;
   return text
@@ -57,13 +100,30 @@ export function initContactForm() {
   const form = document.querySelector('.contact-form');
   if (!form) return;
 
+  // 🔥 Валидация на input — показывает ошибки сразу
   form.addEventListener('input', (e) => {
     if (e.target.name in validationRules) {
       validateField(e.target);
+      // Проверяем общее состояние формы
+      const isFormValid = validateForm(form);
+      setSubmitButtonState(form, !isFormValid); // если форма не валидна, кнопка disabled
     }
   });
 
+  // 🔥 Валидация на blur — тоже проверяем
+  form.addEventListener('blur', (e) => {
+    if (e.target.name in validationRules) {
+      validateField(e.target);
+      const isFormValid = validateForm(form);
+      setSubmitButtonState(form, !isFormValid);
+    }
+  }, true);
+
   form.addEventListener('submit', handleContactSubmit);
+  
+  // 🔥 При инициализации проверяем состояние кнопки
+  const isFormValid = validateForm(form);
+  setSubmitButtonState(form, !isFormValid);
 }
 
 function validateField(field) {
@@ -98,11 +158,14 @@ function validateField(field) {
     return false;
   }
   
+  // 🔥 Добавляем класс valid при успехе
+  field.classList.add('valid');
   return true;
 }
 
 function showError(field, errorElement, errorKey) {
   field.classList.add('error');
+  field.classList.remove('valid');
   errorElement.textContent = errorTexts[errorKey] || 'Ошибка';
 }
 
@@ -119,99 +182,84 @@ function validateForm(form) {
   return isValid;
 }
 
-/*async function handleContactSubmit(event) {
+async function handleContactSubmit(event) {
   event.preventDefault();
   
-  if (!validateForm(event.target)) {
-    const firstError = event.target.querySelector('.error');
+  const form = event.target;
+  
+  // Финальная валидация перед отправкой
+  if (!validateForm(form)) {
+    const firstError = form.querySelector('.error');
     if (firstError) {
       firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
       firstError.focus();
     }
+    showFormNotification(form, 'Пожалуйста, исправьте ошибки в форме');
     return;
   }
   
-  const formData = new FormData(event.target);
+  const formData = new FormData(form);
   const sanitizedData = {};
   
   for (let [key, value] of formData.entries()) {
     sanitizedData[key] = sanitizeInput(value);
   }
   
-  const pricingData = JSON.parse(sessionStorage.getItem('pricingData') || '{}');й
-
+  let pricingData = {};
+  try {
+    pricingData = JSON.parse(sessionStorage.getItem('pricingData') || '{}');
+  } catch (e) {
+    console.warn('Failed to parse pricingData:', e);
+  }
+  
+  // Блокируем кнопку и показываем прелоадер
+  setSubmitButtonState(form, true);
   showPreloader();
   
   try {
     const baseURL = window.location.origin;
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 15000); // 15 секунд таймаут
+    
     const response = await fetch(`${baseURL}/api/send-form`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ...sanitizedData, ...pricingData })
+      body: JSON.stringify({ ...sanitizedData, ...pricingData }),
+      signal: controller.signal
     });
     
-    if (response.ok) {
-      hidePreloader();
-      alert('Message sent successfully!');
-      sessionStorage.removeItem('pricingData');
-      event.target.reset();
-      
-      const popup = event.target.closest('.popup');
-      if (popup) closePopup(popup);
-    } else {
-      throw new Error('Server error');
-    }
-  } catch (error) {
-    console.error('Error:', error);
-    alert('Error sending message. Please try again.');
-  }
-}*/
-
-async function handleContactSubmit(event) {
-  event.preventDefault();
-  
-  if (!validateForm(event.target)) {
-    const firstError = event.target.querySelector('.error');
-    if (firstError) {
-      firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      firstError.focus();
-    }
-    return;
-  }
-  
-  const formData = new FormData(event.target);
-  const sanitizedData = {};
-  
-  for (let [key, value] of formData.entries()) {
-    sanitizedData[key] = sanitizeInput(value);
-  }
-  
-  const pricingData = JSON.parse(sessionStorage.getItem('pricingData') || '{}');
-
-  
-  
-  try {
-    const baseURL = window.location.origin;
-    const response = await fetch(`${baseURL}/api/send-form`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ ...sanitizedData, ...pricingData })
-    });
+    clearTimeout(timeoutId);
     
     if (response.ok) {
-      showPreloader();
-      const popup = event.target.closest('.popup');
+      // Успех
+      const popup = form.closest('.popup');
       if (popup) closePopup(popup);
       sessionStorage.removeItem('pricingData');
-      event.target.reset();
+      form.reset();
       
+      // 🔥 Показываем успех на родительском попапе или просто скрываем прелоадер
       hidePreloader();
+      setSubmitButtonState(form, false);
+      
+      // Можно добавить уведомление об успехе, если нужно
+      console.log('Message sent successfully');
     } else {
-      throw new Error('Server error');
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.error || 'Server error');
     }
   } catch (error) {
     console.error('Error:', error);
     hidePreloader();
-    alert('Error sending message. Please try again.');
+    setSubmitButtonState(form, false);
+    
+    // 🔥 Вместо alert — красивое уведомление
+    let errorMessage = 'Ошибка отправки. Попробуйте позже.';
+    if (error.name === 'AbortError') {
+      errorMessage = 'Сервер не отвечает. Проверьте соединение.';
+    } else if (error.message.includes('Server error')) {
+      errorMessage = 'Ошибка на сервере. Попробуйте позже.';
+    }
+    
+    showFormNotification(form, errorMessage);
   }
 }
