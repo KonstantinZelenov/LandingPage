@@ -17,7 +17,7 @@
 }
 
 .swords-preloader__icons {
-  inline-size: 30%;
+  inline-size: 20%;
   block-size: 30%;
   transform-style: preserve-3d;
   animation: rotateGroup 5s linear infinite;
