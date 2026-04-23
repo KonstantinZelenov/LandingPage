@@ -14,7 +14,7 @@ const validationRules = {
   message: {
     required: true,
     minLength: 10,
-    maxLength: 1000
+    maxLength: 300
   }
 };
 
