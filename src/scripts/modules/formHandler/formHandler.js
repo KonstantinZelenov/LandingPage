@@ -1,4 +1,4 @@
-import { closePopup } from './modal.js';
+import { closePopup } from '../modal.js';
 
 const validationRules = {
   name: {

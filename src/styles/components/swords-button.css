@@ -136,8 +136,8 @@
 }
 
 .swords-button:focus-visible {
-  box-shadow: 0 0 0 2px rgba(0, 120, 255, 0.5);
-  border-radius: 4px;
+  box-shadow: 0 0 0 2px rgba(226, 226, 222, 0.5);
+  border-radius: 10%;
 }
 
 

@@ -79,6 +79,7 @@ export function initSwordsButtons() {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         toggleIcons();
+        button.click();
       }
     });
     

@@ -9,7 +9,6 @@ import {
   navbarTranslations 
 } from './translations.js';
 
-// Конфигурация модулей перевода
 const MODULES_CONFIG = [
   { selector: '.main', translations: mainTranslations },
   { selector: '.popup_main-menu', translations: menuTranslations },
@@ -20,7 +19,6 @@ const MODULES_CONFIG = [
   { selector: '.popup_navbar', translations: navbarTranslations }
 ];
 
-// Процессор для плейсхолдеров контактной формы
 const placeholderProcessor = (container, lang, translations) => {
   const placeholderElements = container.querySelectorAll('[data-i18n-placeholder]');
   placeholderElements.forEach(element => {
@@ -30,8 +28,6 @@ const placeholderProcessor = (container, lang, translations) => {
     }
   });
 };
-
-
 
 const createTranslationManager = () => {
   const modules = [];
@@ -85,7 +81,38 @@ export function initTranslations() {
   const flags = document.querySelectorAll('.lang-switcher__flag');
   const translator = createTranslationManager();
   
-  // Регистрация обычных модулей
+  const LANG_KEY = 'user-language';
+  const LANG_RU = 'ru';
+  const LANG_EN = 'en';
+  
+  const updateFlags = (activeLang) => {
+    flags.forEach(flag => {
+      const lang = flag.dataset.lang;
+      flag.classList.toggle('active', lang === activeLang);
+    });
+  };
+  
+  const enableRussian = () => {
+    translator.translateAll(LANG_RU);
+    updateFlags(LANG_RU);
+    localStorage.setItem(LANG_KEY, LANG_RU);
+  };
+  
+  const enableEnglish = () => {
+    translator.translateAll(LANG_EN);
+    updateFlags(LANG_EN);
+    localStorage.setItem(LANG_KEY, LANG_EN);
+  };
+  
+  const toggleLanguage = () => {
+    const currentLang = translator.getCurrentLang();
+    if (currentLang === LANG_EN) {
+      enableRussian();
+    } else {
+      enableEnglish();
+    }
+  };
+  
   MODULES_CONFIG.forEach(({ selector, translations }) => {
     const container = document.querySelector(selector);
     if (container) {
@@ -95,7 +122,6 @@ export function initTranslations() {
     }
   });
   
-  // Особый случай для контактов (с процессором плейсхолдеров)
   const contactsContainer = document.querySelector('.popup_contacts');
   if (contactsContainer) {
     translator.addModule(contactsContainer, contactsTranslations, placeholderProcessor);
@@ -103,23 +129,15 @@ export function initTranslations() {
     console.warn('Container not found for selector: .popup_contacts');
   }
   
-  // Установка языка по умолчанию
-  translator.translateAll('en');
-  
-  // Обработчик переключения языка
-  function handleTranslateClick() {
-    const currentLang = translator.getCurrentLang();
-    const nextLang = currentLang === 'en' ? 'ru' : 'en';
-    translator.translateAll(nextLang);
-    
-    if (flags && flags.length) {
-      flags[0].classList.toggle('active', nextLang === 'ru');
-      flags[1].classList.toggle('active', nextLang === 'en');
-    }
+  const savedLang = localStorage.getItem(LANG_KEY);
+  if (savedLang === LANG_RU) {
+    enableRussian();
+  } else {
+    enableEnglish();
   }
   
   if (translateButton) {
-    translateButton.addEventListener('click', handleTranslateClick);
+    translateButton.addEventListener('click', toggleLanguage);
   } else {
     console.warn('Language switcher button not found');
   }
