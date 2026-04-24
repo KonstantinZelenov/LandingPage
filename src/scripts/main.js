@@ -3,7 +3,7 @@ import { SmoothMenuWheel } from './modules/menuWheel.js';
 import { initPopups } from './modules/popupManager.js';
 import { ThemeSwitcher } from './modules/theme-switcher.js';
 import { initSwordsButtons } from './modules/swordsButton.js';
-import { initTranslations } from './modules/lang-config.js'; 
+import { initTranslations } from './modules/translations/translationSystem.js'; 
 
 
 document.addEventListener('DOMContentLoaded', () => {

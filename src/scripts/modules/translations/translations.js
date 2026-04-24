@@ -1,4 +1,4 @@
-const mainTranslations = {
+export const mainTranslations = {
   ru: {
     name: 'Константин Зеленов',
     description: 'Тренер по фехтованию, каскадёр, спортсмен'
@@ -9,7 +9,7 @@ const mainTranslations = {
   }
 };
 
-const menuTranslations = {
+export const menuTranslations = {
   ru: {
     about: 'Обо мне',
     projects: 'Проекты',
@@ -24,7 +24,7 @@ const menuTranslations = {
   }
 };
 
-const aboutMeTranslations = {
+export const aboutMeTranslations = {
   ru: {
     about_title: 'Обо мне',
     about_text1: 'Привет, меня зовут Константин Зеленов, и я рад поделиться с вами своей историей. Последние 20 лет я посвятил фехтованию, оттачивая свои навыки как спортсмен, каскадёр, актёр театра и кино.',
@@ -39,7 +39,7 @@ const aboutMeTranslations = {
   }
 };
 
-const projectsTranslations = {
+export const projectsTranslations = {
   ru: {
     projects_title: 'Мои проекты',
     projects_text1: 'Постановочные боевые сцены для театра и кинопроизводства',
@@ -54,7 +54,7 @@ const projectsTranslations = {
   }
 };
 
-const aboutSchoolTranslations = {
+export const aboutSchoolTranslations = {
   ru: {
     school_title: 'О школе',
     school_text: 'Добро пожаловать в нашу школу фехтования. Наши уроки фехтования не только научат вас основам техники, таким как атака, защита и движение, но также помогут развить гибкость, координацию и силу. Каждый ученик получит внимание и поддержку для достижения максимальных результатов в своем развитии как фехтовальщика.'
@@ -65,7 +65,7 @@ const aboutSchoolTranslations = {
   }
 };
 
-const pricesTranslations = {
+export const pricesTranslations = {
   ru: {
     prices_title: 'Прайс-лист',
     training_personal: 'Персональная тренировка',
@@ -90,7 +90,7 @@ const pricesTranslations = {
   }
 };
 
-const contactsTranslations = {
+export const contactsTranslations = {
   ru: {
     contact_title: 'Свяжитесь со мной',
     contact_name: 'Имя:',
@@ -125,7 +125,7 @@ const contactsTranslations = {
   }
 };
 
-const navbarTranslations = {
+export const navbarTranslations = {
   ru: {
     contacts_title: 'Контакты',
     contacts_instagram: 'Инстаграм',
@@ -145,99 +145,3 @@ const navbarTranslations = {
     contacts_telegram_desc: 'Write me'
   }
 };
-
-const createTranslationManager = () => {
-  const modules = [];
-  let currentLang = 'en';
-  
-  return {
-    addModule(container, translations, processor = null) {
-      modules.push({ container, translations, processor });
-    },
-    
-    translateModule(container, lang) {
-      const module = modules.find(m => m.container === container);
-      if (!module) return;
-      
-      const elements = module.container.querySelectorAll('[data-i18n]');
-      elements.forEach(element => {
-        const key = element.getAttribute('data-i18n');
-        if (module.translations[lang]?.[key]) {
-          element.textContent = module.translations[lang][key];
-        }
-      });
-      
-      if (module.processor) {
-        module.processor(module.container, lang, module.translations);
-      }
-    },
-    
-    translateAll(lang) {
-      modules.forEach(module => {
-        this.translateModule(module.container, lang);
-      });
-      currentLang = lang;
-    },
-    
-    getCurrentLang() {
-      return currentLang;
-    },
-    
-    translateModuleById(moduleId, lang) {
-      const module = modules[moduleId];
-      if (module) {
-        this.translateModule(module.container, lang);
-      }
-    }
-  };
-};
-
-export function initTranslations() {
-  const translateButton = document.querySelector('.lang-switcher');
-  const flags = document.querySelectorAll('.lang-switcher__flag');
-  const mainContainer = document.querySelector('.main');
-  const menuContainer = document.querySelector('.popup_main-menu');
-  const aboutMeContainer = document.querySelector('.popup_about-me');
-  const projectsContainer = document.querySelector('.popup_projects');
-  const schoolContainer = document.querySelector('.popup_about-school');
-  const pricesContainer = document.querySelector('.popup_prices');
-  const contactsContainer = document.querySelector('.popup_contacts');
-  const navbarContainer = document.querySelector('.popup_navbar');
-  
-  const translator = createTranslationManager();
-  
-  translator.addModule(mainContainer, mainTranslations);
-  translator.addModule(menuContainer, menuTranslations);
-  translator.addModule(aboutMeContainer, aboutMeTranslations);
-  translator.addModule(projectsContainer, projectsTranslations);
-  translator.addModule(schoolContainer, aboutSchoolTranslations);
-  translator.addModule(pricesContainer, pricesTranslations);
-  translator.addModule(contactsContainer, contactsTranslations, (container, lang, translations) => {
-    const placeholderElements = container.querySelectorAll('[data-i18n-placeholder]');
-    placeholderElements.forEach(element => {
-      const key = element.getAttribute('data-i18n-placeholder');
-      if (translations[lang]?.[key]) {
-        element.setAttribute('placeholder', translations[lang][key]);
-      }
-    });
-  });
-  translator.addModule(navbarContainer, navbarTranslations);
-  
-  
-  translator.translateAll('en');
-  
-  function handleTranslateClick() {
-    const currentLang = translator.getCurrentLang();
-    const nextLang = currentLang === 'en' ? 'ru' : 'en';
-    translator.translateAll(nextLang);
-    
-    if (flags && flags.length) {
-      flags[0].classList.toggle('active', nextLang === 'ru');
-      flags[1].classList.toggle('active', nextLang === 'en');
-    }
-  }
-  
-  if (translateButton) {
-    translateButton.addEventListener('click', handleTranslateClick);
-  }
-}

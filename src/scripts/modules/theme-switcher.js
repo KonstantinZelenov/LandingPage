@@ -6,7 +6,7 @@ export class ThemeSwitcher {
     
     this.init();
   }
-  
+
   init() {
     const savedTheme = localStorage.getItem(this.themeKey);
     if (savedTheme === 'light') {
@@ -17,7 +17,7 @@ export class ThemeSwitcher {
     
     this.button.addEventListener('click', () => this.toggleTheme());
   }
-  
+
   toggleTheme() {
     if (document.body.classList.contains('theme-light')) {
       this.enableDarkTheme();
@@ -37,18 +37,12 @@ export class ThemeSwitcher {
     this.updateIcons('dark');
     localStorage.setItem(this.themeKey, 'dark');
   }
-  
+
   updateIcons(activeTheme) {
-    this.icons.forEach(icon => {
-      icon.classList.remove('active');
-      
-      const isDarkIcon = icon.src.includes('theme-icon-dark');
-      const isLightIcon = icon.src.includes('theme-icon-light');
-      
-      if ((activeTheme === 'dark' && isDarkIcon) || 
-          (activeTheme === 'light' && isLightIcon)) {
-        icon.classList.add('active');
-      }
-    });
+  this.icons.forEach(icon => {
+    const theme = icon.dataset.theme;
+    icon.classList.toggle('active', theme === activeTheme);
+  });
   }
+
 }

@@ -73,20 +73,16 @@
   animation-delay: 3.5s;
 }
 
-.theme-switcher {
-  background-color: transparent;
-}
-
 .theme-switcher__icon {
   position: absolute;
   top: 0;
   left: 0;
   opacity: 0;
-  animation: iconCycleTwoIcons 7s infinite;
+  transition: opacity 0.3s ease;
 }
 
-.theme-switcher__icon:nth-child(2) {
-  animation-delay: 3.5s;
+.theme-switcher__icon.active {
+  opacity: 1;
 }
 
 .theme-light {
@@ -103,17 +99,3 @@
   -webkit-text-stroke: 1px #000;
   text-stroke: 1px #000;
 }
-
-.theme-switcher__icon {
-  transition: opacity 0.3s ease;
-}
-
-.theme-switcher__icon.active {
-  opacity: 1;
-}
-
-.theme-switcher__icon:not(.active) {
-  opacity: 0;
-}
-
-
