@@ -11,17 +11,13 @@ import {
 import { sanitizeFormData } from './sanitizer.js';
 import { closePopup } from '../modal.js';
 
-/**
- * Обработчик отправки формы
- * @param {Event} event
- */
+
 async function handleContactSubmit(event) {
   event.preventDefault();
   
   const form = event.target;
   const formData = new FormData(form);
-  
-  // Валидация
+
   const { isValid, errors } = validateFormData(formData);
   
   if (!isValid) {
@@ -31,7 +27,6 @@ async function handleContactSubmit(event) {
     return;
   }
   
-  // Подготовка данных
   const sanitizedData = sanitizeFormData(formData);
   const pricingData = JSON.parse(sessionStorage.getItem('pricingData') || '{}');
   
